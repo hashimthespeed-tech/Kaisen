@@ -12,6 +12,7 @@
 
 ## Product and design
 
+- When the owner asks to discover a skill or a task would benefit from a capability we do not have, read `.agents/skills/find-skills/SKILL.md`. Check candidate skills against the actual task and their contents; popularity alone is not a quality guarantee. Prefer project-local installation and preserve the feature-branch workflow.
 - For new UI or meaningful visual redesigns, read and apply `.agents/skills/frontend-design/SKILL.md`. Before presenting UI work, use `.agents/skills/web-design-guidelines/SKILL.md` to review the affected files. These are project-local skills; read the files directly if the client does not discover them automatically.
 - These skills support the owner's chosen direction. They do not authorize changing Forest & Mint, inventing educational content, requiring a paid service, or merging without confirmation. Review layout and mobile task order as well as visual polish; see `docs/landing-signup-design-review.md`.
 
