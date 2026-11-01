@@ -26,6 +26,8 @@ With Python Playwright and Chromium available, `python scripts/browser-check.py`
 
 The last command produces `dist-preview/index.html`, with scripts, styles, and fonts embedded. Download it with its `licenses/` directory and open it in a modern browser. Local-file storage and clipboard access vary by browser; when unavailable, the prototype displays an error instead of claiming it saved or copied. During development, Vite provides a regular web origin.
 
+For a download accessible outside the cloud workspace, use the committed archive in [`previews/`](previews/README.md). Regenerate it with `python scripts/package-preview.py` after building the standalone preview.
+
 Prototype data uses the browser's `reign.teacher-prototype.v1` localStorage key. Clearing site data removes it. The prototype is intended for a single teacher in one active tab; no server, synchronization, authentication, or authorization is implemented.
 
 ## Review workflow
