@@ -12,6 +12,9 @@
 
 ## Product and design
 
+- For new UI or meaningful visual redesigns, read and apply `.agents/skills/frontend-design/SKILL.md`. Before presenting UI work, use `.agents/skills/web-design-guidelines/SKILL.md` to review the affected files. These are project-local skills; read the files directly if the client does not discover them automatically.
+- These skills support the owner's chosen direction. They do not authorize changing Forest & Mint, inventing educational content, requiring a paid service, or merging without confirmation. Review layout and mobile task order as well as visual polish; see `docs/landing-signup-design-review.md`.
+
 - Preserve the selected Forest & Mint design: dark green gradients, mint actions, serif headings, readable light workspaces, and simple navigation. See `docs/product-direction.md` and `docs/design-system.md`.
 - The owner supplies educational sources and teaching topics. Do not invent curriculum, lesson explanations, scenario answer keys, market facts, or research rankings.
 - Required written student explanations are rejected. Situation decisions and bounded quantities are the assessment interaction.
