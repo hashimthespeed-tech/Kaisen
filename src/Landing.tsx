@@ -73,7 +73,7 @@ const samples = {
   },
 } as const;
 
-function PortfolioPreview() {
+export function PortfolioPreview() {
   const [period, setPeriod] = useState<keyof typeof samples>("1M");
   const id = useId();
   const { values, label, start, end } = samples[period];

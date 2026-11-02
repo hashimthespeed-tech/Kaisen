@@ -20,14 +20,16 @@ import type {
 } from "./model";
 import { loadStore, persistStore } from "./storage";
 import { Atmosphere, MotionControl, usePageMotion } from "./Motion";
+import { ConceptIndex, HeroConcept } from "./HeroConcepts";
+import type { SceneKind } from "./ConceptScene";
 import Landing, { Arrow, scrollToExperience } from "./Landing";
 
 const go = (path: string) => {
   window.location.hash = path;
 };
-function Brand() {
+function Brand({ href = "#/" }: { href?: string }) {
   return (
-    <a className="brand" translate="no" href="#/" aria-label="Reign home">
+    <a className="brand" translate="no" href={href} aria-label="Reign home">
       <span className="brand-mark">r.</span>reign
     </a>
   );
@@ -685,6 +687,10 @@ export default function App() {
     window.addEventListener("hashchange", change);
     return () => window.removeEventListener("hashchange", change);
   }, []);
+  const isConcept = route === "/concepts" || route.startsWith("/concept/");
+  const concept = /^\/concept\/(sculpture|decision|world)$/.exec(route)?.[1] as
+    | SceneKind
+    | undefined;
   const store = loaded.store;
   const classMatch = /^\/teacher\/class\/([^/]+)(\/edit)?$/.exec(route);
   const classroom = store?.classes.find((item) => item.id === classMatch?.[1]);
@@ -708,6 +714,11 @@ export default function App() {
           Reload preview <Arrow />
         </button>
       </main>
+    );
+  else if (route === "/concepts") content = <ConceptIndex />;
+  else if (concept)
+    content = (
+      <HeroConcept key={concept} kind={concept} returning={Boolean(store)} />
     );
   else if (route === "/") content = <Landing returning={Boolean(store)} />;
   else if (isSetup)
@@ -748,7 +759,7 @@ export default function App() {
     <div
       data-motion={motion.paused || motion.reduced ? "paused" : "running"}
       data-page-hidden={motion.hidden}
-      className={`app-shell ${route === "/" ? "is-home" : isSetup ? "is-setup" : "is-workspace"}`}
+      className={`app-shell ${route === "/" || (concept && concept !== "world") ? "is-home" : isSetup ? "is-setup" : "is-workspace"} ${isConcept ? "is-concept" : ""}`}
     >
       <a
         className="skip-link"
@@ -768,7 +779,7 @@ export default function App() {
         No real accounts or money
       </div>
       <header className="site-header">
-        <Brand />
+        <Brand href={isConcept ? "#/concepts" : "#/"} />
         <nav aria-label="Main navigation">
           {route === "/" && (
             <button
@@ -800,7 +811,7 @@ export default function App() {
         {content}
       </div>
       <footer className="site-footer">
-        <Brand />
+        <Brand href={isConcept ? "#/concepts" : "#/"} />
         <p>Real decisions. Virtual money.</p>
         <span>Teacher setup preview · 01</span>
       </footer>
