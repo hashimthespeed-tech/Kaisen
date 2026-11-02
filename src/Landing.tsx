@@ -1,5 +1,6 @@
 import { useId, useState } from "react";
 import { money } from "./model";
+import { Atmosphere } from "./Motion";
 
 export function Arrow({
   down = false,
@@ -35,9 +36,11 @@ export function Arrow({
 export function scrollToExperience() {
   const target = document.getElementById("experience");
   target?.scrollIntoView({
-    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      ? "instant"
-      : "smooth",
+    behavior:
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      document.querySelector('[data-motion="paused"]') !== null
+        ? "instant"
+        : "smooth",
     block: "start",
   });
   target?.focus({ preventScroll: true });
@@ -208,9 +211,17 @@ export default function Landing({ returning }: { returning: boolean }) {
   return (
     <main className="landing">
       <section className="hero" aria-labelledby="hero-heading">
+        <Atmosphere />
         <div className="hero-layout">
           <div className="hero-content">
-            <h1 id="hero-heading">Investing, learned by doing.</h1>
+            <h1 id="hero-heading">
+              <span className="headline-mask">
+                <span>Investing,</span>
+              </span>{" "}
+              <span className="headline-mask">
+                <span>learned by doing.</span>
+              </span>
+            </h1>
             <p>
               A stock market for your classroom. Invest virtual money, follow
               real companies, and learn from the decisions you make.
@@ -253,7 +264,8 @@ export default function Landing({ returning }: { returning: boolean }) {
         </div>
       </section>
       <section className="experience-section" aria-labelledby="experience">
-        <div className="section-intro">
+        <Atmosphere quiet />
+        <div className="section-intro" data-reveal="heading">
           <h2 id="experience" tabIndex={-1}>
             More than watching
             <br className="desktop-break" /> a number go up.
@@ -263,7 +275,7 @@ export default function Landing({ returning }: { returning: boolean }) {
             situations, and decisions you can talk about together.
           </p>
         </div>
-        <div className="experience-columns">
+        <div className="experience-columns" data-reveal="sequence">
           <article>
             <h3>Make it your portfolio.</h3>
             <p>
@@ -295,6 +307,7 @@ export default function Landing({ returning }: { returning: boolean }) {
         </p>
       </section>
       <section className="teacher-invitation">
+        <Atmosphere quiet />
         <div>
           <h2>
             Your class.
@@ -307,7 +320,7 @@ export default function Landing({ returning }: { returning: boolean }) {
             go.
           </p>
         </div>
-        <div className="teacher-invitation-action">
+        <div className="teacher-invitation-action" data-reveal="action">
           <a className="button primary" href="#/teacher/setup">
             Try teacher setup
             <Arrow />

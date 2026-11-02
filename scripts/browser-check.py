@@ -37,6 +37,22 @@ try:
         page.on('request', lambda request: requests.append(request.url))
         page.goto(origin)
         expect(page.get_by_role('heading', name='Investing, learned by doing.')).to_be_visible()
+        # Verify real motion, pause/resume, visibility suspension, and scroll entrances.
+        light = page.locator('.hero .light-field-one')
+        before = light.evaluate("element => getComputedStyle(element).transform")
+        page.wait_for_function("before => getComputedStyle(document.querySelector('.hero .light-field-one')).transform !== before", arg=before)
+        page.get_by_role('button', name='Pause animations', exact=True).click()
+        assert light.evaluate("element => getComputedStyle(element).animationName") == 'none'
+        expect(page.locator('.app-shell')).to_have_attribute('data-motion', 'paused')
+        page.get_by_role('button', name='Resume animations', exact=True).click()
+        assert light.evaluate("element => getComputedStyle(element).animationName") == 'light-drift'
+        for section in ['.section-intro', '.experience-columns', '.teacher-invitation-action']:
+            page.locator(section).scroll_into_view_if_needed()
+            expect(page.locator(section)).to_have_attribute('data-entered', 'true')
+        expect(page.locator('.hero .atmosphere')).to_have_attribute('data-visible', 'false')
+        assert light.evaluate("element => getComputedStyle(element).animationPlayState") == 'paused'
+        page.evaluate('window.scrollTo(0, 0)')
+        expect(page.locator('.hero .atmosphere')).to_have_attribute('data-visible', 'true')
         page.screenshot(path=str(ARTIFACTS / 'teacher-landing.png'), full_page=True, animations='disabled')
         chart = page.locator('.chart-line')
         monthly_path = chart.get_attribute('d')
@@ -162,6 +178,8 @@ try:
         mp.screenshot(path=str(ARTIFACTS / 'teacher-landing-mobile.png'), full_page=True, animations='disabled')
         # Reduced-motion users get no animated chart stroke.
         mp.emulate_media(reduced_motion='reduce')
+        expect(mp.get_by_role('button', name='Animations off: reduced motion preference')).to_be_disabled()
+        assert mp.locator('.hero .light-field-one').evaluate("element => getComputedStyle(element).animationName") == 'none'
         assert mp.locator('.chart-line').evaluate("element => getComputedStyle(element).animationName") == 'none'
         # Corrupt data is preserved; the user sees a recovery explanation.
         mp.evaluate("localStorage.setItem('reign.teacher-prototype.v1', 'broken')")
@@ -170,7 +188,7 @@ try:
         assert mp.evaluate("localStorage.getItem('reign.teacher-prototype.v1')") == 'broken'
         assert not errors, errors
         browser.close()
-        print(json.dumps({'status': 'passed', 'browser_errors': errors, 'screenshots': str(ARTIFACTS), 'checks': ['validation', 'back navigation', 'conditional controls', 'failed save', 'create', 'reload persistence', 'edit identity', 'multiple classes', 'route recovery', 'skip link', 'portable assets', 'mobile', 'sample chart periods and table', 'product section navigation', '320–1440px responsive layouts including 200% equivalent reflow', 'reduced motion', 'corrupt data recovery']}))
+        print(json.dumps({'status': 'passed', 'browser_errors': errors, 'screenshots': str(ARTIFACTS), 'checks': ['validation', 'back navigation', 'conditional controls', 'failed save', 'create', 'reload persistence', 'edit identity', 'multiple classes', 'route recovery', 'skip link', 'portable assets', 'mobile', 'sample chart periods and table', 'product section navigation', '320–1440px responsive layouts including 200% equivalent reflow', 'continuous motion', 'pause/resume', 'offscreen suspension', 'scroll entrances', 'reduced motion', 'corrupt data recovery']}))
 finally:
     server.shutdown()
     server.server_close()

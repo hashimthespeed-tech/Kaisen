@@ -1357,3 +1357,392 @@ select:focus {
     scroll-behavior: auto !important;
   }
 }
+
+/* Forest & Mint motion: light travels through the surface, not through the task. */
+:root {
+  --ease-arrive: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-arrive: 760ms;
+}
+.hero,
+.experience-section,
+.teacher-invitation,
+.is-setup #main-content {
+  position: relative;
+  isolation: isolate;
+}
+.hero-layout,
+.hero-foot,
+.experience-section > :not(.atmosphere),
+.teacher-invitation > div:not(.atmosphere),
+.setup-layout {
+  position: relative;
+  z-index: 1;
+}
+.atmosphere {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  contain: paint;
+}
+.light-field {
+  position: absolute;
+  width: 100%;
+  height: 110%;
+  border-radius: 50%;
+  animation: light-drift 20s ease-in-out infinite alternate;
+}
+.light-field-one {
+  left: -45%;
+  top: -35%;
+  background: radial-gradient(
+    ellipse at center,
+    #49b58a66,
+    #23977626 35%,
+    transparent 67%
+  );
+}
+.light-field-two {
+  right: -40%;
+  bottom: -48%;
+  background: radial-gradient(
+    ellipse at center,
+    #9af8cb66,
+    #45af7e2e 35%,
+    transparent 67%
+  );
+  animation-name: light-return;
+  animation-duration: 26s;
+  animation-delay: -9s;
+}
+.light-field-three {
+  left: 5%;
+  top: 10%;
+  width: 70%;
+  height: 85%;
+  background: radial-gradient(
+    ellipse at center,
+    #001e1bc4,
+    #001e1b4d 40%,
+    transparent 70%
+  );
+  animation-duration: 24s;
+  animation-delay: -12s;
+}
+.light-contours {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+  stroke: #8ce5ba;
+  stroke-width: 0.7;
+  mask-image: linear-gradient(
+    180deg,
+    transparent,
+    #000 22%,
+    #000 75%,
+    transparent
+  );
+}
+.light-contours g {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: contour-drift 28s ease-in-out infinite alternate;
+}
+.atmosphere-quiet {
+  opacity: 0.7;
+}
+.atmosphere-quiet .light-field-one {
+  background: radial-gradient(
+    ellipse,
+    #5cbb9433,
+    #8ecfb51a 40%,
+    transparent 68%
+  );
+  top: -35%;
+  left: -58%;
+}
+.atmosphere-quiet .light-field-two {
+  background: radial-gradient(
+    ellipse,
+    #5eaa8c38,
+    #a1cfb81a 40%,
+    transparent 67%
+  );
+  bottom: -35%;
+  right: -58%;
+}
+.atmosphere-quiet .light-field-three {
+  display: none;
+}
+.atmosphere-quiet .light-contours {
+  stroke: #548e76;
+  opacity: 0.11;
+}
+.is-setup #main-content {
+  background: linear-gradient(
+    90deg,
+    #e9f2ec88,
+    transparent 32%,
+    transparent 68%,
+    #e9f2ec88
+  );
+}
+.hero-content h1 {
+  position: relative;
+  text-shadow: 0 8px 36px #001b164d;
+}
+.headline-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+.headline-mask > span {
+  display: block;
+  animation: headline-arrive var(--motion-arrive) var(--ease-arrive) both;
+}
+.headline-mask + .headline-mask > span {
+  animation-delay: 100ms;
+}
+.hero-content > p,
+.hero-actions {
+  animation: content-arrive 660ms var(--ease-arrive) both;
+  animation-delay: 200ms;
+}
+.hero-actions {
+  animation-delay: 280ms;
+}
+.hero-content > .hero-note {
+  animation-delay: 340ms;
+}
+.hero-product {
+  animation: portfolio-arrive 800ms var(--ease-arrive) both;
+  animation-delay: 160ms;
+}
+.portfolio-preview {
+  box-shadow:
+    0 36px 80px #001b1452,
+    0 8px 24px #001b1426;
+}
+.form-heading {
+  animation: step-arrive 280ms var(--ease-arrive) both;
+}
+.steps .step-number {
+  transition:
+    background-color 220ms ease,
+    color 220ms ease,
+    border-color 220ms ease;
+}
+.button .arrow-icon,
+.nav-tile .arrow-icon,
+.hero-explore .arrow-icon {
+  transition: transform 220ms var(--ease-arrive);
+}
+.button:hover .arrow-icon,
+.nav-tile:hover .arrow-icon {
+  transform: translate(2px, -2px);
+}
+.hero-explore:hover .arrow-icon {
+  transform: translateY(3px);
+}
+[data-reveal="heading"] h2,
+[data-reveal="action"] {
+  transition:
+    opacity 640ms ease,
+    transform 760ms var(--ease-arrive);
+}
+[data-reveal="heading"][data-entered="false"] h2,
+[data-reveal="action"][data-entered="false"] {
+  opacity: 0;
+  transform: translateY(24px);
+}
+[data-reveal="sequence"] article {
+  transition:
+    opacity 540ms ease,
+    transform 640ms var(--ease-arrive);
+}
+[data-reveal="sequence"] article:nth-child(2) {
+  transition-delay: 80ms;
+}
+[data-reveal="sequence"] article:nth-child(3) {
+  transition-delay: 160ms;
+}
+[data-reveal="sequence"][data-entered="false"] article {
+  opacity: 0;
+  transform: translateY(16px);
+}
+/* Keyboard navigation never waits for an observer or an entrance. */
+[data-reveal]:focus-within,
+[data-reveal]:focus-within h2,
+[data-reveal]:focus-within article {
+  opacity: 1;
+  transform: none;
+}
+.motion-control {
+  position: fixed;
+  z-index: 10;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid #9fb8aa;
+  border-radius: 40px;
+  background: #eff6f1;
+  color: var(--forest);
+  font-size: 11px;
+}
+.motion-control:hover {
+  background: #dbece1;
+}
+.motion-control:disabled {
+  opacity: 1;
+  cursor: default;
+}
+.site-footer {
+  padding-bottom: 80px;
+}
+[data-motion="paused"] *,
+[data-motion="paused"] *::before,
+[data-motion="paused"] *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+[data-motion="paused"] [data-reveal],
+[data-motion="paused"] [data-reveal] h2,
+[data-motion="paused"] [data-reveal] article {
+  opacity: 1;
+  transform: none;
+}
+[data-page-hidden="true"] *,
+.atmosphere[data-visible="false"] * {
+  animation-play-state: paused !important;
+}
+@keyframes light-drift {
+  from {
+    transform: translate3d(-4%, -4%, 0) scale(0.95) rotate(-12deg);
+    opacity: 0.72;
+  }
+  to {
+    transform: translate3d(22%, 12%, 0) scale(1.15) rotate(12deg);
+    opacity: 1;
+  }
+}
+@keyframes light-return {
+  from {
+    transform: translate3d(10%, 8%, 0) scale(1.1);
+    opacity: 0.8;
+  }
+  to {
+    transform: translate3d(-22%, -12%, 0) scale(0.94);
+    opacity: 1;
+  }
+}
+@keyframes contour-drift {
+  from {
+    transform: translate(-20px, 20px) rotate(-3deg) scale(1.04);
+  }
+  to {
+    transform: translate(20px, -20px) rotate(3deg) scale(1.08);
+  }
+}
+@keyframes headline-arrive {
+  from {
+    transform: translateY(100%) rotate(2deg);
+    opacity: 0.2;
+  }
+  to {
+    transform: translateY(0) rotate(0);
+    opacity: 1;
+  }
+}
+@keyframes content-arrive {
+  from {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes portfolio-arrive {
+  from {
+    transform: translateY(22px) scale(0.97);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+@keyframes step-arrive {
+  from {
+    transform: translateY(6px);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@media (max-width: 599px) {
+  .light-contours {
+    opacity: 0.12;
+  }
+  .atmosphere-quiet .light-field-one {
+    left: -65%;
+  }
+  .atmosphere-quiet .light-field-two {
+    right: -65%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  [data-reveal] h2,
+  [data-reveal] article {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 599px) {
+  .motion-control {
+    position: static;
+    width: 44px;
+    padding: 0;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .motion-control span {
+    display: none;
+  }
+  .site-header nav {
+    gap: 8px;
+  }
+  .site-header .brand {
+    font-size: 28px;
+    gap: 8px;
+  }
+  .site-header .brand-mark {
+    width: 28px;
+    height: 28px;
+    font-size: 21px;
+  }
+  .site-header .nav-tile {
+    padding: 12px;
+    font-size: 12px;
+  }
+  .site-header .nav-tile .arrow-icon {
+    display: none;
+  }
+}
+
+.is-home .site-header .motion-control:focus-visible {
+  outline-color: #308d70;
+}

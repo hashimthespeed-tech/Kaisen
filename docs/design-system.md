@@ -9,6 +9,6 @@ The owner selected the Hyper Foundation hero and Hyperliquid's restrained layout
 - Consistent hierarchy across pages. Avoid cyber-space styling, dense feature grids, and excessive game decoration.
 - Ordinary scrolling. Keyboard focus, semantic labels, responsive layouts, and reduced-motion support.
 
-## Later animation pass
+## Motion direction
 
-The owner requested richer smooth motion inspired by three screenshots: numbered paragraphs with active emphasis, mint particles on forest backgrounds, and thin organic contour lines. Adapt these to Reign's brand and investing story. Keep them optional/decorative, respect reduced motion, and avoid forced scroll experiences. This pass is separate from teacher setup.
+The owner requested richer smooth motion inspired by three screenshots: numbered paragraphs with active emphasis, mint particles on forest backgrounds, and thin organic contour lines. Adapt these to Reign's brand and investing story. Keep them optional/decorative, respect reduced motion, and avoid forced scroll experiences. The current `feat/premium-motion` preview adds flowing CSS light, drifting contour lines, a coordinated hero entrance, scroll reveals, and quick setup heading transitions. Pause and reduced-motion controls are included. Particles and a numbered narrative section remain future options; see `motion-direction.md`.

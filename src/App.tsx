@@ -19,6 +19,7 @@ import type {
   SetupDraft,
 } from "./model";
 import { loadStore, persistStore } from "./storage";
+import { Atmosphere, MotionControl, usePageMotion } from "./Motion";
 import Landing, { Arrow, scrollToExperience } from "./Landing";
 
 const go = (path: string) => {
@@ -253,7 +254,7 @@ function Setup({
             </li>
           ))}
         </ol>
-        <div className="form-heading">
+        <div className="form-heading" key={step}>
           <h1 ref={heading} tabIndex={-1}>
             {step === 1
               ? "Start your teacher preview."
@@ -665,6 +666,7 @@ function Workspace({
 
 export default function App() {
   const [route, setRoute] = useState(window.location.hash.slice(1) || "/");
+  const motion = usePageMotion(route);
   const [loaded, setLoaded] = useState<{
     store: PrototypeStore | null;
     error: boolean;
@@ -744,6 +746,8 @@ export default function App() {
     );
   return (
     <div
+      data-motion={motion.paused || motion.reduced ? "paused" : "running"}
+      data-page-hidden={motion.hidden}
       className={`app-shell ${route === "/" ? "is-home" : isSetup ? "is-setup" : "is-workspace"}`}
     >
       <a
@@ -788,9 +792,11 @@ export default function App() {
               <Arrow />
             </a>
           )}
+          <MotionControl {...motion} />
         </nav>
       </header>
       <div id="main-content" tabIndex={-1}>
+        {isSetup && <Atmosphere quiet />}
         {content}
       </div>
       <footer className="site-footer">
