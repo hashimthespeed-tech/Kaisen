@@ -36,15 +36,31 @@ try:
         requests = []
         page.on('request', lambda request: requests.append(request.url))
         page.goto(origin)
-        expect(page.get_by_role('heading', name='The market is real.')).to_be_visible()
-        page.screenshot(path=str(ARTIFACTS / 'teacher-landing.png'), full_page=True)
+        expect(page.get_by_role('heading', name='Investing, learned by doing.')).to_be_visible()
+        page.screenshot(path=str(ARTIFACTS / 'teacher-landing.png'), full_page=True, animations='disabled')
+        chart = page.locator('.chart-line')
+        monthly_path = chart.get_attribute('d')
+        page.get_by_role('button', name='Show one week', exact=True).focus()
+        page.keyboard.press('Space')
+        expect(page.get_by_role('button', name='Show one week', exact=True)).to_have_attribute('aria-pressed', 'true')
+        assert chart.get_attribute('d') != monthly_path
+        expect(page.locator('.portfolio-gain')).to_contain_text('$72')
+        page.locator('.chart-data summary').click()
+        expect(page.get_by_role('table')).to_be_visible()
+        expect(page.get_by_role('table').locator('tbody tr')).to_have_count(7)
+        page.locator('.chart-data summary').click()
+        page.get_by_role('button', name='Show one month', exact=True).click()
+        page.get_by_role('button', name='See how it works', exact=True).click()
+        expect(page.locator('#experience')).to_be_focused()
+        assert '#experience' not in page.url
         page.get_by_role('link', name='Create your class').click()
+        page.screenshot(path=str(ARTIFACTS / 'teacher-signup-desktop.png'), full_page=True, animations='disabled')
         page.get_by_role('button', name='Continue', exact=True).click()
         expect(page.get_by_text('Enter a name between')).to_be_visible()
         page.get_by_label('Your name', exact=True).fill('Alex Morgan')
         page.get_by_label('Email address', exact=True).fill('alex@example.com')
         page.get_by_role('button', name='Continue', exact=True).click()
-        page.screenshot(path=str(ARTIFACTS / 'teacher-class-setup-desktop.png'), full_page=True)
+        page.screenshot(path=str(ARTIFACTS / 'teacher-class-setup-desktop.png'), full_page=True, animations='disabled')
         page.get_by_label('Class name', exact=True).fill('Economics · Period 3')
         page.get_by_label('Starting virtual cash per student').fill('12500.50')
         page.get_by_role('button', name='Back', exact=False).click()
@@ -69,7 +85,7 @@ try:
         page.get_by_role('button', name='Review class').click()
         expect(page.get_by_text('AAPL, MSFT', exact=True)).to_be_visible()
         expect(page.get_by_text('$75.25 · Friday', exact=True)).to_be_visible()
-        page.screenshot(path=str(ARTIFACTS / 'teacher-review-desktop.png'), full_page=True)
+        page.screenshot(path=str(ARTIFACTS / 'teacher-review-desktop.png'), full_page=True, animations='disabled')
         # A denied write must leave the review in place without a false success.
         page.evaluate("() => { window.originalSet = Storage.prototype.setItem; Storage.prototype.setItem = () => { throw new Error('Blocked'); }; }")
         page.get_by_role('button', name='Create preview class').click()
@@ -80,7 +96,7 @@ try:
         code = page.locator('.class-code').inner_text()
         assert len(code) == 8
         url = page.url
-        page.screenshot(path=str(ARTIFACTS / 'teacher-workspace-desktop.png'), full_page=True)
+        page.screenshot(path=str(ARTIFACTS / 'teacher-workspace-desktop.png'), full_page=True, animations='disabled')
         page.reload()
         expect(page.locator('.class-code')).to_have_text(code)
         page.get_by_role('link', name='Edit settings').click()
@@ -117,6 +133,11 @@ try:
         mp.on('pageerror', lambda error: errors.append(str(error)))
         mp.goto(origin + '/#/teacher/setup')
         no_overflow(mp)
+        name_box = mp.get_by_label('Your name', exact=True).bounding_box()
+        continue_box = mp.get_by_role('button', name='Continue', exact=True).bounding_box()
+        assert name_box['y'] < 400, name_box
+        assert continue_box['y'] + continue_box['height'] < 844, continue_box
+        mp.screenshot(path=str(ARTIFACTS / 'teacher-signup-mobile.png'), full_page=True, animations='disabled')
         mp.get_by_label('Your name', exact=True).fill('Taylor Teacher')
         mp.get_by_label('Email address', exact=True).fill('taylor@example.com')
         mp.get_by_role('button', name='Continue', exact=True).click()
@@ -124,11 +145,24 @@ try:
         mp.get_by_role('button', name='More class settings').click()
         mp.get_by_role('checkbox', name='Add weekly virtual cash').check()
         no_overflow(mp)
-        mp.screenshot(path=str(ARTIFACTS / 'teacher-class-setup-mobile.png'), full_page=True)
+        mp.screenshot(path=str(ARTIFACTS / 'teacher-class-setup-mobile.png'), full_page=True, animations='disabled')
         mp.get_by_role('button', name='Review class').click()
         mp.get_by_role('button', name='Create preview class').click()
         no_overflow(mp)
-        mp.screenshot(path=str(ARTIFACTS / 'teacher-workspace-mobile.png'), full_page=True)
+        mp.screenshot(path=str(ARTIFACTS / 'teacher-workspace-mobile.png'), full_page=True, animations='disabled')
+        # Layouts at a small phone, tablet, and laptop size remain usable.
+        for width, height in [(320, 740), (720, 500), (768, 1024), (1280, 800)]:
+            mp.set_viewport_size({'width': width, 'height': height})
+            mp.goto(origin)
+            no_overflow(mp)
+            mp.goto(origin + '/#/teacher/setup')
+            no_overflow(mp)
+        mp.set_viewport_size({'width': 390, 'height': 844})
+        mp.goto(origin)
+        mp.screenshot(path=str(ARTIFACTS / 'teacher-landing-mobile.png'), full_page=True, animations='disabled')
+        # Reduced-motion users get no animated chart stroke.
+        mp.emulate_media(reduced_motion='reduce')
+        assert mp.locator('.chart-line').evaluate("element => getComputedStyle(element).animationName") == 'none'
         # Corrupt data is preserved; the user sees a recovery explanation.
         mp.evaluate("localStorage.setItem('reign.teacher-prototype.v1', 'broken')")
         mp.reload()
@@ -136,7 +170,7 @@ try:
         assert mp.evaluate("localStorage.getItem('reign.teacher-prototype.v1')") == 'broken'
         assert not errors, errors
         browser.close()
-        print(json.dumps({'status': 'passed', 'browser_errors': errors, 'screenshots': str(ARTIFACTS), 'checks': ['validation', 'back navigation', 'conditional controls', 'failed save', 'create', 'reload persistence', 'edit identity', 'multiple classes', 'route recovery', 'skip link', 'portable assets', 'mobile', 'corrupt data recovery']}))
+        print(json.dumps({'status': 'passed', 'browser_errors': errors, 'screenshots': str(ARTIFACTS), 'checks': ['validation', 'back navigation', 'conditional controls', 'failed save', 'create', 'reload persistence', 'edit identity', 'multiple classes', 'route recovery', 'skip link', 'portable assets', 'mobile', 'sample chart periods and table', 'product section navigation', '320–1440px responsive layouts including 200% equivalent reflow', 'reduced motion', 'corrupt data recovery']}))
 finally:
     server.shutdown()
     server.server_close()

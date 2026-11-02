@@ -19,30 +19,16 @@ import type {
   SetupDraft,
 } from "./model";
 import { loadStore, persistStore } from "./storage";
+import Landing, { Arrow, scrollToExperience } from "./Landing";
 
 const go = (path: string) => {
   window.location.hash = path;
 };
 function Brand() {
   return (
-    <a className="brand" href="#/" aria-label="Reign home">
+    <a className="brand" translate="no" href="#/" aria-label="Reign home">
       <span className="brand-mark">r.</span>reign
     </a>
-  );
-}
-function Arrow() {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      aria-hidden="true"
-    >
-      <path d="M6 18 18 6M6 6h12v12" />
-    </svg>
   );
 }
 function Summary({ settings }: { settings: ClassSettings }) {
@@ -207,10 +193,15 @@ function Setup({
     id: key,
     name: key,
     "aria-invalid": Boolean(errors[key]),
-    "aria-describedby": [
-      ['email', 'startingCash', 'approvedSymbols'].includes(key) ? `${key}-hint` : '',
-      errors[key] ? `${key}-error` : '',
-    ].filter(Boolean).join(' ') || undefined,
+    "aria-describedby":
+      [
+        ["email", "startingCash", "approvedSymbols"].includes(key)
+          ? `${key}-hint`
+          : "",
+        errors[key] ? `${key}-error` : "",
+      ]
+        .filter(Boolean)
+        .join(" ") || undefined,
   });
   const textInput = (
     key:
@@ -233,53 +224,19 @@ function Setup({
     <input
       {...attrs(key)}
       {...options}
+      spellCheck={
+        key === "email" || key === "approvedSymbols" ? false : undefined
+      }
+      autoComplete={options.autoComplete ?? "off"}
       value={draft[key]}
       onChange={(event) => set(key, event.target.value)}
     />
   );
   return (
-    <main className="setup-layout">
-      <aside className="setup-story">
-        <p className="eyebrow">A little setup. A lot of possibility.</p>
-        <h1>
-          Your classroom.
-          <br /> Their first
-          <br /> <em>investment.</em>
-        </h1>
-        <p>
-          Give your students a place to make decisions, follow the market, and
-          learn together.
-        </p>
-        <div className="growth-art" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-          <span />
-          <span />
-          <span />
-        </div>
-        <div className="story-foot">
-          <svg
-            className="spark"
-            width="32"
-            height="32"
-            viewBox="0 0 32 32"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            aria-hidden="true"
-          >
-            <path d="M16 1v30M1 16h30M5 5l22 22M5 27 27 5" />
-          </svg>
-          <span>
-            Real decisions.
-            <br />
-            Virtual money.
-          </span>
-        </div>
-      </aside>
+    <main className={`setup-layout setup-step-${step}`}>
       <section className="setup-form" aria-label="Teacher setup">
         <ol className="steps" aria-label="Setup progress">
-          {["You", "Your class", "Review"].map((label, index) => (
+          {["Your details", "Your class", "Review"].map((label, index) => (
             <li
               key={label}
               className={
@@ -291,27 +248,26 @@ function Setup({
               }
               aria-current={step === index + 1 ? "step" : undefined}
             >
-              <span>{step > index + 1 ? "✓" : `0${index + 1}`}</span>
+              <span className="step-number">{index + 1}</span>
               {label}
             </li>
           ))}
         </ol>
         <div className="form-heading">
-          <p className="eyebrow">Step 0{step} / 03</p>
-          <h2 ref={heading} tabIndex={-1}>
+          <h1 ref={heading} tabIndex={-1}>
             {step === 1
-              ? "First, a quick hello."
+              ? "Start your teacher preview."
               : step === 2
                 ? existing
-                  ? "Make it your class."
-                  : "Set the starting point."
-                : "Looks like a good start."}
-          </h2>
+                  ? "Edit your class settings."
+                  : "Create your class."
+                : "Review your class."}
+          </h1>
           <p>
             {step === 1
-              ? "Add your details to try the teacher experience."
+              ? "Add your details, then set up your first class."
               : step === 2
-                ? "A few simple choices. You can edit these later."
+                ? "Choose a starting budget and investment access. You can change these later."
                 : "Take a look before saving your class in this browser."}
           </p>
         </div>
@@ -338,8 +294,8 @@ function Setup({
                   "Use sample details if you prefer. No email will be sent.",
                 )}
                 <div className="note">
-                  This is a local preview. It saves these details only in this
-                  browser and does not create an account.
+                  Your preview stays in this browser. No real account is
+                  created.
                 </div>
               </>
             ) : (
@@ -533,11 +489,11 @@ function Setup({
                     setStep(1);
                   }}
                 >
-                  ← Back
+                  <Arrow back /> Back
                 </button>
               ) : (
                 <a className="text-button" href={store ? "#/teacher" : "#/"}>
-                  ← Back
+                  <Arrow back /> Back
                 </a>
               )}
               <button className="button primary" type="submit">
@@ -552,7 +508,7 @@ function Setup({
                 <Arrow />
               </span>
               <div>
-                <h3>{draft.className.trim()}</h3>
+                <h2>{draft.className.trim()}</h2>
                 <p>{draft.teacherName.trim()} · Teacher</p>
               </div>
             </div>
@@ -568,7 +524,7 @@ function Setup({
             )}
             <div className="form-actions">
               <button className="text-button" onClick={() => setStep(2)}>
-                ← Edit details
+                <Arrow back /> Edit details
               </button>
               <button className="button primary" onClick={save}>
                 {existing ? "Save changes" : "Create preview class"} <Arrow />
@@ -576,9 +532,6 @@ function Setup({
             </div>
           </>
         )}
-        <p className="setup-bottom">
-          A classroom stock market. A safe place to start.
-        </p>
       </section>
     </main>
   );
@@ -710,56 +663,6 @@ function Workspace({
   );
 }
 
-function Landing({ returning }: { returning: boolean }) {
-  return (
-    <main className="landing">
-      <section className="hero">
-        <div className="hero-lines" aria-hidden="true" />
-        <p className="eyebrow">Invest in a little understanding.</p>
-        <h1>
-          The market is real.
-          <br />
-          The possibilities
-          <br />
-          <em>are yours.</em>
-        </h1>
-        <p className="hero-copy">
-          A classroom stock market where students make the decisions. Build a
-          portfolio, explore what happens, and learn together. All with virtual
-          money.
-        </p>
-        <div className="hero-actions">
-          <a
-            className="button primary"
-            href={returning ? "#/teacher" : "#/teacher/setup"}
-          >
-            {returning ? "Open your workspace" : "Create your class"} <Arrow />
-          </a>
-          <a className="hero-link" href="#/teacher/setup">
-            {returning ? "Create another class" : "Try the teacher preview"}{" "}
-            <span aria-hidden="true">→</span>
-          </a>
-        </div>
-        <div className="hero-bottom">
-          <span>Made for curious minds.</span>
-          <span>Built around your classroom.</span>
-        </div>
-      </section>
-      <section className="landing-intro">
-        <p className="eyebrow">01 / A place to begin</p>
-        <h2>
-          Small decisions.
-          <br />A bigger perspective.
-        </h2>
-        <p>
-          Choose a starting balance and set the rules for your class. Your
-          students' first steps start with you.
-        </p>
-      </section>
-    </main>
-  );
-}
-
 export default function App() {
   const [route, setRoute] = useState(window.location.hash.slice(1) || "/");
   const [loaded, setLoaded] = useState<{
@@ -840,7 +743,9 @@ export default function App() {
       </main>
     );
   return (
-    <>
+    <div
+      className={`app-shell ${route === "/" ? "is-home" : isSetup ? "is-setup" : "is-workspace"}`}
+    >
       <a
         className="skip-link"
         href="#main-content"
@@ -852,22 +757,37 @@ export default function App() {
         Skip to content
       </a>
       <div className="prototype-bar">
-        <span className="status-dot" /> Teacher preview{" "}
-        <span className="bar-divider">/</span> Saved only in this browser · No
-        real accounts
+        Design preview{" "}
+        <span className="bar-divider" aria-hidden="true">
+          /
+        </span>{" "}
+        No real accounts or money
       </div>
       <header className="site-header">
         <Brand />
         <nav aria-label="Main navigation">
-          <span className="nav-label">
-            For the next generation of investors.
-          </span>
-          <a
-            className="nav-tile"
-            href={store ? "#/teacher" : "#/teacher/setup"}
-          >
-            {store ? "My classes" : "For teachers"} <Arrow />
-          </a>
+          {route === "/" && (
+            <button
+              type="button"
+              className="nav-explore"
+              onClick={scrollToExperience}
+            >
+              How it works
+            </button>
+          )}
+          {isSetup ? (
+            <a className="nav-back" href={store ? "#/teacher" : "#/"}>
+              {store ? "Back to classes" : "Back to Reign"}
+            </a>
+          ) : (
+            <a
+              className="nav-tile"
+              href={store ? "#/teacher" : "#/teacher/setup"}
+            >
+              {store ? "My classes" : "Teacher preview"}
+              <Arrow />
+            </a>
+          )}
         </nav>
       </header>
       <div id="main-content" tabIndex={-1}>
@@ -878,6 +798,6 @@ export default function App() {
         <p>Real decisions. Virtual money.</p>
         <span>Teacher setup preview · 01</span>
       </footer>
-    </>
+    </div>
   );
 }
