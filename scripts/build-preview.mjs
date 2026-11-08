@@ -9,13 +9,14 @@ const style = html.match(/<link\b[^>]*href="([^"]+\.css)"[^>]*>/);
 if (!script || !style)
   throw new Error("Expected one built script and stylesheet.");
 let code = await readFile(path.join(root, script[1]), "utf8");
-// Public images use root URLs in the hosted build. Embed them for file:// review.
-const seedArtwork = await readFile(path.join(root, "accrete-seed-art.webp"));
-code = code.replaceAll(
-  "/accrete-seed-art.webp",
-  `data:image/webp;base64,${seedArtwork.toString("base64")}`,
-);
 let css = await readFile(path.join(root, style[1]), "utf8");
+// Public artwork uses root URLs in the hosted build. Embed it for file:// review.
+for (const image of ["accrete-strata.webp", "accrete-foreground.webp"]) {
+  const bytes = await readFile(path.join(root, image));
+  const data = `data:image/webp;base64,${bytes.toString("base64")}`;
+  code = code.replaceAll(`/${image}`, data);
+  css = css.replaceAll(`../${image}`, data).replaceAll(`/${image}`, data);
+}
 const assetDirectory = path.dirname(path.join(root, style[1]));
 for (const match of [...css.matchAll(/url\(([^)]+\.woff2)\)/g)]) {
   const asset = match[1].replace(/["']/g, "");

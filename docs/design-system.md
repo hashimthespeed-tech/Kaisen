@@ -4,12 +4,14 @@ The owner selected Accrete, the tagline “See past the price,” and Variation 
 
 Palette: deep pine `#073B2E`, emerald `#08C98A`, bright mint `#72F0C5`, black `#080B0A`, bright red `#FF304F`, white `#FFFFFF`. Inter is the working modern sans for both brand and interface. Red is reserved for meaningful market losses and alerts, not decoration.
 
-The landing page uses the Cora-inspired *layering method*, applied to investing evidence instead of clouds or landscapes. Earnings, products, and industry sit behind a practice decision. The screen is an illustrative interaction, not a lesson, market claim, or trading recommendation. Keep the teacher setup marked as a browser-local prototype until real accounts exist.
+The landing page uses a layered composition across the scroll: original deep-green mineral artwork behind a calm headline, one integrated product preview below, and an independent transparent foreground plane that crosses the product boundary. The product preview lets visitors inspect earnings, products, and industry, then practice a buy, hold, or sell decision. It is illustrative, not a lesson, market claim, or trading recommendation. Keep the teacher setup marked as a browser-local prototype until real accounts exist.
 
-Motion should feel smooth and purposeful: a coordinated first entrance and gentle depth for the evidence stack, with reduced-motion support. Preserve keyboard focus, touch targets, readable contrast, and mobile composition. The landing hero is dark; reading and operating surfaces are light.
+Motion follows the scroll through small differences in the background, product, and foreground positions. Evidence changes and decision feedback animate once in response to user input. There are no continuously looping decorative objects. Reduced-motion preference removes this movement. Preserve keyboard focus, touch targets, readable contrast, and mobile composition. The landing hero is dark; reading and operating surfaces are light.
 
 Earlier Reign Forest & Mint and Hyper mockups are superseded by this direction. The product brief and approved functional behavior still apply.
 
-## Immersive preview pass
+## Design research and revision
 
-The owner rejected the first small side-by-side scene. The revised landing hero fills the viewport with an original translucent seed artwork, independently layered evidence sheets, a foreground practice decision, pointer-responsive depth, and a pause control. A second visual chapter shows research, decision, and outcome as distinct overlapping planes. This is visual language only; no fabricated curriculum, real quotes, or outcome claims are presented. The downloaded single-file preview embeds the artwork so it works without a server.
+The owner found the earlier hero crowded and its floating seed animation cheap. Research on [Cora](https://cora.computer/) showed a centered, spacious opening, one continuous illustrated background, a product preview introduced lower on the page, separate foreground art overlapping that preview, and a later foreground image sequence. The [Regards Cora gallery](https://www.regards.design/i/cora) also highlights its headline, sky, product, and lower review strip. The Accrete revision follows that spatial sequence with its own mineral art and product content; it does not reuse Cora's assets.
+
+The downloaded single-file preview embeds both original Accrete image layers so it works without a server. The hosted private preview uses the same assets as separate files.
