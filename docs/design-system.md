@@ -9,3 +9,7 @@ The landing page uses the Cora-inspired *layering method*, applied to investing 
 Motion should feel smooth and purposeful: a coordinated first entrance and gentle depth for the evidence stack, with reduced-motion support. Preserve keyboard focus, touch targets, readable contrast, and mobile composition. The landing hero is dark; reading and operating surfaces are light.
 
 Earlier Reign Forest & Mint and Hyper mockups are superseded by this direction. The product brief and approved functional behavior still apply.
+
+## Immersive preview pass
+
+The owner rejected the first small side-by-side scene. The revised landing hero fills the viewport with an original translucent seed artwork, independently layered evidence sheets, a foreground practice decision, pointer-responsive depth, and a pause control. A second visual chapter shows research, decision, and outcome as distinct overlapping planes. This is visual language only; no fabricated curriculum, real quotes, or outcome claims are presented. The downloaded single-file preview embeds the artwork so it works without a server.
