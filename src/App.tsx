@@ -19,15 +19,16 @@ import type {
   SetupDraft,
 } from "./model";
 import { loadStore, persistStore } from "./storage";
-import Landing, { Arrow, scrollToExperience } from "./Landing";
+import Landing, { Arrow, scrollToExperience } from "./AccreteLanding";
+import SeedLogo from "./SeedLogo";
 
 const go = (path: string) => {
   window.location.hash = path;
 };
 function Brand() {
   return (
-    <a className="brand" translate="no" href="#/" aria-label="Reign home">
-      <span className="brand-mark">r.</span>reign
+    <a className="brand" translate="no" href="#/" aria-label="Accrete home">
+      <SeedLogo />Accrete
     </a>
   );
 }
@@ -315,7 +316,7 @@ function Setup({
                     <span aria-hidden="true">$</span>
                     {textInput("startingCash", { inputMode: "decimal" })}
                   </div>,
-                  "The amount each student starts with. All money in Reign is virtual.",
+                  "The amount each student starts with. All money in Accrete is virtual.",
                 )}
                 <fieldset className="access-options">
                   <legend>What can students invest in?</legend>
@@ -777,7 +778,7 @@ export default function App() {
           )}
           {isSetup ? (
             <a className="nav-back" href={store ? "#/teacher" : "#/"}>
-              {store ? "Back to classes" : "Back to Reign"}
+              {store ? "Back to classes" : "Back to Accrete"}
             </a>
           ) : (
             <a

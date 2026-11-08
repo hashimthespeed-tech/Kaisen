@@ -1,4 +1,4 @@
-# Working on Reign
+# Working on Accrete
 
 ## Git workflow required by the owner
 
@@ -19,7 +19,7 @@
 - Use `.agents/skills/ui-ux-pro-max/SKILL.md` as a targeted reference for forms, charts, and interaction questions. Resolve its scripts relative to that skill's actual directory (the upstream examples use a Claude-specific path). Check search-result relevance and preserve the existing Forest & Mint design system.
 - These skills support the owner's chosen direction. They do not authorize changing Forest & Mint, inventing educational content, requiring a paid service, or merging without confirmation. Review layout and mobile task order as well as visual polish; see `docs/landing-signup-design-review.md`.
 
-- Preserve the selected Forest & Mint design: dark green gradients, mint actions, serif headings, readable light workspaces, and simple navigation. See `docs/product-direction.md` and `docs/design-system.md`.
+- Preserve the owner's Accrete direction: the symmetrical vertical seed mark, deep pine/emerald/mint/black/red/white palette, modern sans typography, layered evidence leading into a decision, and clear light workspaces. See `docs/design-system.md`. Earlier Reign/Forest & Mint mockups are historical references, not the active brand.
 - The owner supplies educational sources and teaching topics. Do not invent curriculum, lesson explanations, scenario answer keys, market facts, or research rankings.
 - Required written student explanations are rejected. Situation decisions and bounded quantities are the assessment interaction.
 - Every student must belong to a teacher-created class. Never treat a browser-local prototype profile as a real authenticated account.

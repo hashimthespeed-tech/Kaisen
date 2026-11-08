@@ -1,14 +1,11 @@
-# Forest & Mint
+# Accrete identity — working implementation
 
-The owner selected the Hyper Foundation hero and Hyperliquid's restrained layouts as visual references. Reign uses its own identity and copy. Duna/watercolor is an earlier direction, not the current theme.
+The owner selected Accrete, the tagline “See past the price,” and Variation 1 of the vertical seed logo. The mark is symmetrical with two deep-green halves, a narrow white opening, and a mint core. Implement it as SVG so its geometry remains crisp at small sizes. The supplied brand boards are visual references; the current SVG is the first implementation and should be reviewed against them.
 
-- Forest `#072724`, mint `#97fcd7`, paper `#f5f8f7`, secondary text `#526d65`, borders `#dce6e1`.
-- Native CSS forest-green gradients for expressive areas. Light, readable workspaces for tasks.
-- Playfair Display for display headings and the wordmark; Inter for UI. Locally bundled, licensed alternatives to proprietary reference fonts.
-- Rounded navigation tiles, pill actions, thin borders, generous spacing, and restrained controls.
-- Consistent hierarchy across pages. Avoid cyber-space styling, dense feature grids, and excessive game decoration.
-- Ordinary scrolling. Keyboard focus, semantic labels, responsive layouts, and reduced-motion support.
+Palette: deep pine `#073B2E`, emerald `#08C98A`, bright mint `#72F0C5`, black `#080B0A`, bright red `#FF304F`, white `#FFFFFF`. Inter is the working modern sans for both brand and interface. Red is reserved for meaningful market losses and alerts, not decoration.
 
-## Later animation pass
+The landing page uses the Cora-inspired *layering method*, applied to investing evidence instead of clouds or landscapes. Earnings, products, and industry sit behind a practice decision. The screen is an illustrative interaction, not a lesson, market claim, or trading recommendation. Keep the teacher setup marked as a browser-local prototype until real accounts exist.
 
-The owner requested richer smooth motion inspired by three screenshots: numbered paragraphs with active emphasis, mint particles on forest backgrounds, and thin organic contour lines. Adapt these to Reign's brand and investing story. Keep them optional/decorative, respect reduced motion, and avoid forced scroll experiences. This pass is separate from teacher setup.
+Motion should feel smooth and purposeful: a coordinated first entrance and gentle depth for the evidence stack, with reduced-motion support. Preserve keyboard focus, touch targets, readable contrast, and mobile composition. The landing hero is dark; reading and operating surfaces are light.
+
+Earlier Reign Forest & Mint and Hyper mockups are superseded by this direction. The product brief and approved functional behavior still apply.

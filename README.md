@@ -1,4 +1,4 @@
-# Reign
+# Accrete
 
 A classroom stock market where students use virtual money to make investing decisions together.
 
