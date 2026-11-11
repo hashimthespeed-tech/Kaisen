@@ -5,3 +5,5 @@ MOMENT is the provisional name for the classroom investing experience. The landi
 The present review contains only the hero and a small interactive product preview. The clouds painted into the chosen image stay fixed in that composition. The separate cloud cutout had a visible rectangular edge and has been removed. The earlier telescope and three-card sequence are rejected and are absent from this review.
 
 Use midnight navy, moonlight white, and restrained warm amber for the landing presentation. Keep headline copy short, consistently aligned, and in title case; keep the product preview readable and the background visible around both. On mobile, crop the same mural toward the moon, observatory, and crystal detail. Product values and decisions are illustrative and virtual.
+
+On entry, the night scene clears from a brief dark veil while the headline resolves into focus and the preview settles in. The mural and its painted clouds never move. Reduce Motion removes the entrance choreography. A future foreground object should be a genuinely modeled observatory lens with restrained liquid-glass refraction, not a faux 3D card stack.

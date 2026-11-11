@@ -1,6 +1,6 @@
 body:has(.moment-landing){background:#07152d;color:#f5f8ff}
 body:has(.moment-landing) .prototype-bar{position:relative;z-index:30;background:#061329;color:#c9d9ec;border-bottom:1px solid #b6cce525}
-body:has(.moment-landing) .site-header{position:absolute;top:31px;left:0;right:0;z-index:20;background:transparent;color:#fff;border:0}
+body:has(.moment-landing) .site-header{position:absolute;top:31px;left:0;right:0;z-index:20;background:transparent;color:#fff;border:0;animation:moment-header-enter .55s .08s cubic-bezier(.16,1,.3,1) both}
 body:has(.moment-landing) .site-header .brand{color:#fff;text-shadow:0 2px 18px #010918}
 body:has(.moment-landing) .site-header .seed-logo{width:29px;height:29px}
 body:has(.moment-landing) .site-header .nav-explore{color:#dce9fa}
@@ -13,19 +13,22 @@ body:has(.moment-landing) ::selection{background:#ffdbab;color:#07152d}
 .moment-mural{position:relative;z-index:0;width:100%}
 .moment-mural img{display:block;width:100%;height:auto}
 .moment-landing:before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,#0613291a 0%,#0613290a 19%,transparent 40%)}
+.moment-landing:after{content:"";position:absolute;top:0;left:0;right:0;height:1300px;z-index:1;pointer-events:none;background:linear-gradient(180deg,#061329 0%,#061329 68%,transparent 100%);opacity:0;animation:moment-night-clear 1.15s ease-out both}
 .moment-foreground{position:absolute;inset:0;z-index:2}
 .moment-hero{min-height:700px;padding:210px 24px 75px;display:flex;justify-content:center;text-align:left}
 .moment-hero>div{width:min(100%,550px)}
 .moment-hero h1{font-family:Inter,Arial,sans-serif;font-size:clamp(65px,7.5vw,96px);font-weight:700;line-height:.98;letter-spacing:-.04em;text-shadow:0 7px 32px #020c1fa6}
 .moment-hero h1 span{display:block;white-space:nowrap}
-.moment-hero p{max-width:460px;margin:27px 0 0;color:#e2edfc;font-size:clamp(16px,1.4vw,19px);line-height:1.55;text-shadow:0 2px 16px #020c1f}
-.moment-hero-actions{display:flex;justify-content:flex-start;align-items:center;gap:28px;margin-top:32px}
+.moment-hero h1 span:first-child{animation:moment-focus .78s .08s cubic-bezier(.16,1,.3,1) both}
+.moment-hero h1 span:last-child{animation:moment-focus .78s .18s cubic-bezier(.16,1,.3,1) both}
+.moment-hero p{max-width:460px;margin:27px 0 0;color:#e2edfc;font-size:clamp(16px,1.4vw,19px);line-height:1.55;text-shadow:0 2px 16px #020c1f;animation:moment-copy-enter .62s .34s cubic-bezier(.16,1,.3,1) both}
+.moment-hero-actions{display:flex;justify-content:flex-start;align-items:center;gap:28px;margin-top:32px;animation:moment-copy-enter .62s .44s cubic-bezier(.16,1,.3,1) both}
 .moment-primary{display:inline-flex;align-items:center;justify-content:space-between;gap:32px;min-height:52px;padding:0 20px;border-radius:10px;background:#f5d29c;color:#142544;font-size:14px;font-weight:700}
 .moment-primary:hover{background:#ffe2b7}
 .moment-explore{border:0;background:transparent;color:#f0f6ff;display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:650;padding:12px 0}
 .moment-explore:hover{color:#ffdbab}
 .moment-showcase{max-width:760px;margin:0 auto;padding:0 22px 70px}
-.moment-preview{overflow:hidden;border-radius:15px;background:#f5f8fc;color:#152b4a;box-shadow:0 25px 75px #010b21a6;outline:none}
+.moment-preview{overflow:hidden;border-radius:15px;background:#f5f8fc;color:#152b4a;box-shadow:0 25px 75px #010b21a6;outline:none;animation:moment-preview-enter .8s .52s cubic-bezier(.16,1,.3,1) both}
 .moment-preview-bar{height:50px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:15px;border-bottom:1px solid #d6e1ee;background:#fbfcff}
 .moment-preview-brand{display:flex;align-items:center;gap:9px;font-size:12px;font-weight:800;white-space:nowrap}
 .moment-preview-brand .seed-logo{height:22px;width:22px}
@@ -45,6 +48,7 @@ body:has(.moment-landing) ::selection{background:#ffdbab;color:#07152d}
 .moment-preview-detail>p{font-size:12px;color:#56708c;line-height:1.5;margin-top:8px}
 .moment-preview-chart{height:88px;margin:16px 0 10px;position:relative;color:#4d83be;background:repeating-linear-gradient(to bottom,transparent 0,transparent 29px,#dce6f0 30px)}
 .moment-preview-chart svg{width:100%;height:100%}
+.moment-preview-chart path{stroke-dasharray:390;stroke-dashoffset:0;animation:moment-chart-draw .85s .12s cubic-bezier(.16,1,.3,1) both}
 .moment-preview-choice{border-top:1px solid #d8e3ee;margin-top:auto;padding-top:13px}
 .moment-preview-choice>span{font-size:11px;font-weight:750}
 .moment-preview-choice>div{display:flex;gap:7px;margin-top:10px}
@@ -52,6 +56,12 @@ body:has(.moment-landing) ::selection{background:#ffdbab;color:#07152d}
 .moment-preview-choice button:hover{background:#e7f0fb}
 .moment-preview-choice button.is-selected{background:#173b6b;border-color:#173b6b;color:#fff}
 .moment-preview-choice p{min-height:16px;margin-top:9px;font-size:10px;color:#627996}
+@keyframes moment-night-clear{from{opacity:.35}to{opacity:0}}
+@keyframes moment-header-enter{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes moment-focus{from{opacity:.4;filter:blur(4px);transform:translateY(14px)}to{opacity:1;filter:blur(0);transform:translateY(0)}}
+@keyframes moment-copy-enter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes moment-preview-enter{from{opacity:0;transform:translateY(22px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes moment-chart-draw{from{stroke-dashoffset:390}to{stroke-dashoffset:0}}
 @media(min-width:601px) and (max-width:1000px){
   .moment-mural{width:1000px;left:calc(100% + 80px);transform:translateX(-100%)}
 }
@@ -72,4 +82,7 @@ body:has(.moment-landing) ::selection{background:#ffdbab;color:#07152d}
   .moment-preview-detail h3{font-size:23px}
   .moment-preview-chart{height:70px}
 }
-@media(prefers-reduced-motion:reduce){.moment-landing *{scroll-behavior:auto}}
+@media(prefers-reduced-motion:reduce){
+  .moment-landing *{scroll-behavior:auto}
+  body:has(.moment-landing) .site-header,.moment-landing:after,.moment-hero h1 span,.moment-hero p,.moment-hero-actions,.moment-preview,.moment-preview-chart path{animation:none}
+}
