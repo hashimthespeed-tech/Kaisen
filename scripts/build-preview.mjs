@@ -11,7 +11,7 @@ if (!script || !style)
 let code = await readFile(path.join(root, script[1]), "utf8");
 let css = await readFile(path.join(root, style[1]), "utf8");
 // Public artwork uses root URLs in the hosted build. Embed it for file:// review.
-for (const image of ["moment-observatory.webp"]) {
+for (const image of Array.from({ length: 7 }, (_, index) => `moment-mural-${String(index + 1).padStart(2, "0")}.webp`)) {
   const bytes = await readFile(path.join(root, image));
   const data = `data:image/webp;base64,${bytes.toString("base64")}`;
   code = code.replaceAll(`/${image}`, data);
