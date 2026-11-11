@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import SeedLogo from './SeedLogo';
 import './accrete.css';
+import './moment.css';
 
 export function Arrow({ down = false, back = false }: { down?: boolean; back?: boolean }) {
   return <svg className="arrow-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d={back ? 'M20 12H4m6-6-6 6 6 6' : down ? 'M12 4v16m-6-6 6 6 6-6' : 'M5 12h14m-6-6 6 6-6 6'}/></svg>;
@@ -46,7 +47,7 @@ function ScrollChapter() {
   return <section className="al-scroll-chapter" aria-labelledby="experience">
     <div className="al-scroll-track"><div className="al-scroll-pin">
       <div className="al-scroll-copy"><span className="al-section-index">02 / THE BIGGER PICTURE</span><h2 id="experience" tabIndex={-1}>A decision<br/>takes shape.</h2><p>One signal starts a question. The full picture gives you a reason to act.</p><div className="al-scene-phases" aria-hidden="true"><span className="al-scene-phase">01&nbsp; Explore the signals</span><span className="al-scene-phase">02&nbsp; Connect the evidence</span><span className="al-scene-phase">03&nbsp; Choose with context</span></div></div>
-      <div className="al-scene-stage" aria-hidden="true"><div className="al-scene-glow"/><div className="al-scene-seed"><SeedLogo/></div><div className="al-scene-thread"/>
+      <div className="al-scene-stage" aria-hidden="true"><div className="al-scene-glow"/><img className="al-scene-instrument" src="/moment-telescope.webp" alt="" width="1536" height="1024" loading="lazy"/><div className="al-scene-thread"/>
         {chapters.map(({ title, kind, detail }, index) => <div className={`al-scene-card al-scene-card-${index + 1}`} key={kind}><span className="al-scene-card-index">0{index + 1} / EVIDENCE</span><div><EvidenceIcon kind={kind}/><strong>{title}</strong></div><p>{detail}</p><i/><i/></div>)}
         <div className="al-scene-outcome"><span className="al-scene-outcome-label"><i/> PRACTICE SCENARIO</span><h3>Now, what would<br/>you do next?</h3><p>The evidence is in view. Make a decision you can explain.</p><div className="al-scene-outcome-tags"><span>Earnings</span><span>Products</span><span>Industry</span></div><div className="al-scene-outcome-choice"><span>Buy</span><span>Hold</span><span>Sell</span></div></div>
       </div>
@@ -77,7 +78,7 @@ export default function AccreteLanding({ returning }: { returning: boolean }) {
     const cards = [...landing.querySelectorAll<HTMLElement>('.al-scene-card')];
     const phases = [...landing.querySelectorAll<HTMLElement>('.al-scene-phase')];
     const outcome = landing.querySelector<HTMLElement>('.al-scene-outcome');
-    const seed = landing.querySelector<HTMLElement>('.al-scene-seed');
+    const instrument = landing.querySelector<HTMLElement>('.al-scene-instrument');
     let frame = 0;
     let distance = 0;
     let target = 0;
@@ -90,11 +91,10 @@ export default function AccreteLanding({ returning }: { returning: boolean }) {
       sceneProgress += (sceneTarget - sceneProgress) * .14;
       if (Math.abs(sceneTarget - sceneProgress) < .001) sceneProgress = sceneTarget;
       const mobile = window.innerWidth < 601;
-      world.style.setProperty('--layer-backdrop-y', `${Math.round(distance * (mobile ? .10 : .18))}px`);
+      world.style.setProperty('--layer-backdrop-y', `${Math.round(distance * (mobile ? .035 : .065))}px`);
       world.style.setProperty('--layer-product-y', `${Math.round(distance * (mobile ? .02 : .03))}px`);
-      world.style.setProperty('--layer-glass-y', `${Math.round(Math.min(distance, mobile ? 950 : 1500) * (mobile ? .40 : .55))}px`);
-      world.style.setProperty('--layer-glass-scale', String(1 + Math.min(distance / 1600, 1) * .1));
-      if (scene && outcome && seed) {
+      world.style.setProperty('--layer-cloud-y', `${Math.round(Math.min(distance, mobile ? 950 : 1500) * (mobile ? .38 : .48))}px`);
+      if (scene && outcome && instrument) {
         const gather = clamp(sceneProgress / .42);
         const cardFade = clamp((sceneProgress - .34) / .12);
         const resolve = clamp((sceneProgress - .56) / .18);
@@ -118,8 +118,8 @@ export default function AccreteLanding({ returning }: { returning: boolean }) {
         });
         outcome.style.opacity = String(resolve);
         outcome.style.transform = `translate3d(0,${Math.round((1 - resolve) * 90)}px,0) scale(${.83 + resolve * .17})`;
-        seed.style.opacity = String((1 - resolve) * .18 + merge * .54);
-        seed.style.transform = `scale(${.75 + gather * .45 + merge * .25})`;
+        instrument.style.opacity = String((1 - resolve) * (.78 + merge * .14));
+        instrument.style.transform = `translate3d(${Math.round(gather * (mobile ? 16 : 40))}px,${Math.round(gather * (mobile ? 20 : 35))}px,0) rotate(${(gather * 4).toFixed(1)}deg) scale(${1 + gather * .08})`;
         scene.style.setProperty('--scene-progress', sceneProgress.toFixed(3));
       }
       frame = distance === target && sceneProgress === sceneTarget ? 0 : requestAnimationFrame(paint);
@@ -135,7 +135,7 @@ export default function AccreteLanding({ returning }: { returning: boolean }) {
     onScroll(); window.addEventListener('scroll', onScroll, { passive: true }); window.addEventListener('resize', onScroll);
     return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); if (frame) cancelAnimationFrame(frame); observer.disconnect(); };
   }, []);
-  return <main className="accrete-landing"><div className="al-world"><div className="al-backdrop" aria-hidden="true"/><img className="al-glass" src="/accrete-glass.webp" alt="" width="2172" height="724" fetchPriority="high" aria-hidden="true"/>
+  return <main className="accrete-landing"><div className="al-world"><div className="al-backdrop" aria-hidden="true"/><img className="al-cloud" src="/moment-cloud.webp" alt="" width="2172" height="724" aria-hidden="true"/>
     <section className="al-hero" aria-labelledby="hero-heading"><div className="al-hero-copy"><span className="al-eyebrow"><span/> INVESTING IS MORE THAN A NUMBER</span><h1 id="hero-heading"><span className="al-hero-line">See past</span><span className="al-hero-line"><em>the price.</em></span></h1><p>Discover the story behind a company. Make a decision with evidence, and see where it takes you.</p><div className="al-hero-actions"><a className="al-primary" href={returning ? '#/teacher' : '#/teacher/setup'}>{returning ? 'Open your workspace' : 'Create a class'}<Arrow/></a><button className="al-text-link" type="button" onClick={scrollToExperience}>Explore the experience <Arrow down/></button></div></div><span className="al-hero-corner">REAL COMPANIES <span>·</span> VIRTUAL MONEY <span>·</span> ROOM TO LEARN</span></section>
     <section className="al-showcase" aria-labelledby="showcase-heading"><div className="al-showcase-heading"><span>THE MOMENT EXPERIENCE</span><h2 id="showcase-heading">From evidence<br/>to action.</h2><p>Explore the pieces that matter, then make a move you can explain.</p></div><div className="al-product-wrap"><ProductPreview/></div><div className="al-showcase-foot"><span>01 / A CLOSER LOOK</span><span>SCROLL TO DISCOVER <Arrow down/></span></div></section>
     </div><ScrollChapter/><section className="al-story" aria-labelledby="learning-loop"><div className="al-story-intro"><span className="al-section-index">03 / THE LEARNING LOOP</span><h2 id="learning-loop">A better question<br/>changes everything.</h2><p>MOMENT turns investing into a practice of looking closer. Students follow a path from curiosity to a decision and back to the evidence.</p></div><div className="al-steps"><article><span>01 — EXPLORE</span><h3>Find the signals.</h3><p>Look into the products, earnings, and industry behind a company.</p><div className="al-step-graphic al-step-graphic-one" aria-hidden="true"><i/><i/><i/></div></article><article><span>02 — DECIDE</span><h3>Make your move.</h3><p>Choose to buy, hold, or sell, and connect that choice to what you found.</p><div className="al-step-graphic al-step-graphic-two" aria-hidden="true"><i/><i/><i/></div></article><article><span>03 — REFLECT</span><h3>See what follows.</h3><p>Watch the outcome unfold, then revisit what you knew at the time.</p><div className="al-step-graphic al-step-graphic-three" aria-hidden="true"><svg viewBox="0 0 220 75"><path d="M0 64 C30 58 39 68 66 47 S107 58 136 33 S173 39 220 8" fill="none" stroke="currentColor" strokeWidth="3"/></svg></div></article></div></section>

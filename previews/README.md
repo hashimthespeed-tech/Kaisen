@@ -1,6 +1,6 @@
-# Teacher setup preview
+# MOMENT night observatory preview
 
-Download `reign-teacher-setup.zip` using GitHub's **Download raw file** button. Extract the ZIP, then open the extracted `index.html` in Chrome, Edge, Firefox, or Safari. Do not open the source `index.html` at the repository root; it requires the development server.
+Download `moment-night-observatory.zip` using GitHub's **Download raw file** button. Extract the ZIP, then open the extracted `index.html` in Chrome, Edge, Firefox, or Safari. Do not open the source `index.html` at the repository root; it requires the development server.
 
 This ZIP contains the standalone interactive preview and font licenses. It does not require Node, an installation, or an internet connection after downloading. Browser storage and clipboard permissions vary; the app reports unavailable storage or copying instead of claiming success.
 

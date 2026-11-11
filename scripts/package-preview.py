@@ -13,7 +13,7 @@ for name in files:
     if not (source / name).is_file():
         raise SystemExit('Missing preview files. Run npm run build:preview first.')
 
-destination = root / 'previews' / 'reign-teacher-setup.zip'
+destination = root / 'previews' / 'moment-night-observatory.zip'
 destination.parent.mkdir(exist_ok=True)
 with ZipFile(destination, 'w', ZIP_DEFLATED) as archive:
     for name in files:
