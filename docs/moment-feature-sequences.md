@@ -9,12 +9,26 @@ motion live in the rendered frames.
 
 ## First sequence: Research a company
 
-Start on a price-only view of one illustrative company in a single MOMENT
-research screen. The camera moves close; the same screen gains depth as the
-Earnings, Products, and Industry views become available. It ends on the full
-company view, with the product interface readable. No report cards fly together
-and no CSS line is drawn as the feature animation. This is the first sequence
-to storyboard because the existing preview already exposes those three views.
+Demonstrate the move from price alone to a fuller company view, making
+Earnings, Products, and Industry visible without inventing market facts. End
+with a readable MOMENT research experience. No report cards fly together and
+no CSS line is drawn as the feature animation. This is the first sequence to
+storyboard because the existing preview already exposes those three views.
+
+### Visual draft A: research folio
+
+The first visual exploration is one bound research folio in a pale studio. Its
+navy cover opens, a translucent page turns, and the company overview appears.
+These are **keyframes for review only**, not an animation or approved final
+asset. The source UI capture is `previews/moment-research-reference.png`.
+
+1. [Closed folio](../previews/research-storyboard/01-closed.png)
+2. [Page turning](../previews/research-storyboard/02-page-turn.png)
+3. [Open research view](../previews/research-storyboard/03-open.png)
+
+If the visual metaphor is accepted, the next pass must lock the folio geometry
+and exact product content, then render consistent in-between frames at the
+delivery resolution. Do not simulate motion by dissolving these three stills.
 
 ## Later sequences
 
