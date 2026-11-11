@@ -27,8 +27,8 @@ const go = (path: string) => {
 };
 function Brand() {
   return (
-    <a className="brand" translate="no" href="#/" aria-label="Accrete home">
-      <SeedLogo />Accrete
+    <a className="brand" translate="no" href="#/" aria-label="MOMENT home">
+      <SeedLogo />MOMENT
     </a>
   );
 }
@@ -316,7 +316,7 @@ function Setup({
                     <span aria-hidden="true">$</span>
                     {textInput("startingCash", { inputMode: "decimal" })}
                   </div>,
-                  "The amount each student starts with. All money in Accrete is virtual.",
+                  "The amount each student starts with. All money in MOMENT is virtual.",
                 )}
                 <fieldset className="access-options">
                   <legend>What can students invest in?</legend>
@@ -778,7 +778,7 @@ export default function App() {
           )}
           {isSetup ? (
             <a className="nav-back" href={store ? "#/teacher" : "#/"}>
-              {store ? "Back to classes" : "Back to Accrete"}
+              {store ? "Back to classes" : "Back to MOMENT"}
             </a>
           ) : (
             <a
