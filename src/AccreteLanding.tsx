@@ -33,13 +33,18 @@ type Signal = keyof typeof signals;
 type Decision = 'Buy' | 'Hold' | 'Sell';
 
 const muralTiles = [
-  { src: '/moment-mural-01.webp', height: 1330 },
-  { src: '/moment-mural-02.webp', height: 1331 },
-  { src: '/moment-mural-03.webp', height: 1330 },
-  { src: '/moment-mural-04.webp', height: 1330 },
-  { src: '/moment-mural-05.webp', height: 1330 },
-  { src: '/moment-mural-06.webp', height: 1331 },
-  { src: '/moment-mural-07.webp', height: 1330 },
+  { src: '/moment-mural-01.webp', height: 1614 },
+  { src: '/moment-mural-02.webp', height: 1614 },
+  { src: '/moment-mural-03.webp', height: 1614 },
+  { src: '/moment-mural-04.webp', height: 1614 },
+  { src: '/moment-mural-05.webp', height: 1522 },
+  { src: '/moment-mural-06.webp', height: 1522 },
+  { src: '/moment-mural-07.webp', height: 1522 },
+  { src: '/moment-mural-08.webp', height: 1522 },
+  { src: '/moment-mural-09.webp', height: 1614 },
+  { src: '/moment-mural-10.webp', height: 1614 },
+  { src: '/moment-mural-11.webp', height: 1614 },
+  { src: '/moment-mural-12.webp', height: 1614 },
 ] as const;
 
 function ProductPreview() {
@@ -59,7 +64,7 @@ function ProductPreview() {
 export default function Landing({ returning }: { returning: boolean }) {
   return <main className="moment-landing">
     <div className="moment-mural" aria-hidden="true">
-      {muralTiles.map((tile, index) => <img key={tile.src} src={tile.src} alt="" width="1882" height={tile.height} loading={index < 2 ? 'eager' : 'lazy'} fetchPriority={index === 0 ? 'high' : 'auto'} decoding="async"/>)}
+      {muralTiles.map((tile, index) => <img key={tile.src} src={tile.src} alt="" width="3840" height={tile.height} loading={index < 2 ? 'eager' : 'lazy'} fetchPriority={index === 0 ? 'high' : 'auto'} decoding="async"/>)}
     </div>
     <div className="moment-foreground">
       <section className="moment-hero" aria-labelledby="hero-heading"><div><h1 id="hero-heading"><span>See Past</span><span>The Price.</span></h1><p>Discover the story behind a company before you decide what to do next.</p><div className="moment-hero-actions"><a className="moment-primary" href={returning ? '#/teacher' : '#/teacher/setup'}>{returning ? 'Open your workspace' : 'Create a class'}<Arrow/></a><button className="moment-explore" type="button" onClick={scrollToExperience}>Explore the preview<Arrow down/></button></div></div></section>
