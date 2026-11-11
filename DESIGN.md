@@ -1,17 +1,7 @@
 # MOMENT landing direction
 
-MOMENT is a provisional name. The owner chose a night observatory setting for an investing education site: looking into a company should feel like observing beyond the obvious. The site keeps product copy grounded in classroom practice with virtual money.
+MOMENT is the provisional name for the classroom investing experience. The landing page uses the owner's selected night observatory illustration, `public/moment-observatory.webp`, as one continuous vertical background. The sky, Milky Way, hills, observatory, and path are parts of that same image. Do not switch to another background as the visitor scrolls.
 
-## Visual system
+The present review contains only the hero and a small interactive product preview. The clouds already painted into the chosen image stay fixed in that composition. The separate cloud cutout had a visible rectangular edge and has been removed. The earlier telescope and three-card sequence are rejected and are absent from this review.
 
-- Background: a vertical, cinematic painted night scene, from a detailed star field at the top toward an observatory terrace below. A distinct painted valley continues the descent behind the learning chapter. Keep generous dark space for reading.
-- Palette: ink `#07132d`, observatory navy `#102d57`, cobalt `#214c82`, moonlight `#eaf3ff`, and restrained amber `#f2ca90`. No green in the landing presentation.
-- Typography: Inter for the temporary wordmark, headings, and product interface. Large copy stays direct and readable.
-- Layers: the painted sky is the base; a transparent moonlit cloud cutout moves across the opening; a transparent telescope cutout anchors the pinned evidence chapter. These are separate images with separate scroll motion.
-- Interface: light product workspaces remain clear against the dark world. Evidence, teacher setup, and virtual decisions stay legible and honest.
-
-## Motion
-
-The background moves slightly, the cloud passes more slowly than the page, and the product window follows a subtler path. In the pinned chapter, evidence gathers around the telescope, then yields to a practice scenario. Respect reduced-motion settings and keep text visible during page load.
-
-The old Accrete design notes in `docs/design-system.md` document an earlier identity.
+Use midnight navy, moonlight white, and restrained warm amber for the landing presentation. Keep headline copy short, the product preview readable, and the background visible around both. On mobile, crop the same background toward the moon and observatory. Product values and decisions are illustrative and virtual.
