@@ -6,4 +6,8 @@ The present review contains only the hero and a small interactive product previe
 
 Use midnight navy, moonlight white, and restrained warm amber for the landing presentation. Keep headline copy short, consistently aligned, and in title case; keep the product preview readable and the background visible around both. On mobile, crop the same mural toward the moon, observatory, and crystal detail. Product values and decisions are illustrative and virtual.
 
-On entry, the night scene clears from a brief dark veil while the headline resolves into focus and the preview settles in. The mural and its painted clouds never move. Reduce Motion removes the entrance choreography. A future foreground object should be a genuinely modeled observatory lens with restrained liquid-glass refraction, not a faux 3D card stack.
+On entry, the night scene clears from a brief dark veil while the headline resolves into focus and the preview settles in. The mural and its painted clouds never move. Reduce Motion removes the entrance choreography.
+
+Future 3D feature demonstrations belong in a separate visual space from the mural. They must show actual MOMENT product experiences, such as researching a company, making a virtual situation decision, or reviewing a portfolio. Build them from consistent, high-resolution pre-rendered frames with a still fallback. The page should only play the sequence and manage its visibility; CSS chart drawing, card stacks, ornamental lenses, and background parallax are not the feature animations. Do not invent lessons, market facts, or scenario outcomes for these assets.
+
+The feature storyboards and playback approach are in `docs/moment-feature-sequences.md`.

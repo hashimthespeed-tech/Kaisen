@@ -1,4 +1,9 @@
-# Accrete identity — working implementation
+# Accrete identity — historical exploration
+
+The current MOMENT direction is in `DESIGN.md`. The observatory mural remains
+static; future feature demonstrations are separate, high-resolution
+pre-rendered frame sequences showing actual product functions. Do not revive
+the glass object, chart-drawing animation, or card-stack chapter below.
 
 The owner selected Accrete, the tagline “See past the price,” and Variation 1 of the vertical seed logo. The mark is symmetrical with two deep-green halves, a narrow white opening, and a mint core. Implement it as SVG so its geometry remains crisp at small sizes. The supplied brand boards are visual references; the current SVG is the first implementation and should be reviewed against them.
 
