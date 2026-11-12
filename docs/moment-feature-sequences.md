@@ -1,11 +1,11 @@
 # MOMENT feature animation direction
 
-The observatory mural is the fixed page setting. A feature animation is a
-separate physical scene that demonstrates something a student or teacher
-actually does in MOMENT. The first feature now uses a genuine GLB model with
-keyframed motion, materials, and mapped research views. It does not borrow its
-subject from the mural. A still render supports reduced motion and failed
-WebGL playback.
+The observatory mural is the page setting. A feature animation is a separate,
+pre-rendered sequence that demonstrates something a student or teacher actually
+does in MOMENT. Its rendered scene may use liquid-glass surfaces, physical depth,
+lighting, and camera motion, but it must not borrow its subject from the mural.
+CSS only handles page entrance and playback placement. The feature's 3D look and
+motion live in the rendered frames.
 
 ## First sequence: Research a company
 
@@ -19,17 +19,16 @@ storyboard because the existing preview already exposes those three views.
 
 The first visual exploration is one bound research folio in a pale studio. Its
 navy cover opens, a translucent page turns, and the company overview appears.
-These were the **visual reference frames**, not the delivered asset. The source
-UI capture is `previews/moment-research-reference.png`.
+These are **keyframes for review only**, not an animation or approved final
+asset. The source UI capture is `previews/moment-research-reference.png`.
 
 1. [Closed folio](../previews/research-storyboard/01-closed.png)
 2. [Page turning](../previews/research-storyboard/02-page-turn.png)
 3. [Open research view](../previews/research-storyboard/03-open.png)
 
-The editable Blender build is `scripts/build-research-folio.py`, with page
-textures built by `scripts/build-research-textures.py`. The GLB lives at
-`public/moment-research-folio.glb`; `src/ResearchFolio.tsx` plays the real
-hinge animation. The page visuals are illustrative, with no market claims.
+If the visual metaphor is accepted, the next pass must lock the folio geometry
+and exact product content, then render consistent in-between frames at the
+delivery resolution. Do not simulate motion by dissolving these three stills.
 
 ## Later sequences
 
@@ -42,7 +41,10 @@ hinge animation. The page visuals are illustrative, with no market claims.
 
 ## Production and playback
 
-Build and inspect the 3D source at the beginning, middle, and end of its
-animation. Keep the feature scene and its shadows within its own visual area;
-the mural and clouds remain still behind the page. A Meshy or other specialist
-asset can replace the model later if an art-direction review calls for it.
+Approve a small set of style-consistent keyframes before producing in-between
+frames. Render a high-resolution master sequence, then encode the frames for
+web playback so the visitor sees continuous motion without downloading dozens
+of separate large image requests. Start when the sequence enters view, pause
+when it leaves, and show a still frame for reduced motion or failed playback.
+Keep the feature scene and its shadows within its own visual area; the mural
+and clouds remain still behind the page.

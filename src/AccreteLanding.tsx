@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import SeedLogo from './SeedLogo';
-import ResearchFolio from './ResearchFolio';
 import './moment.css';
 
 export function Arrow({ down = false, back = false }: { down?: boolean; back?: boolean }) {
@@ -70,7 +69,6 @@ export default function Landing({ returning }: { returning: boolean }) {
     <div className="moment-foreground">
       <section className="moment-hero" aria-labelledby="hero-heading"><div><h1 id="hero-heading"><span>See Past</span><span>The Price.</span></h1><p>Discover the story behind a company before you decide what to do next.</p><div className="moment-hero-actions"><a className="moment-primary" href={returning ? '#/teacher' : '#/teacher/setup'}>{returning ? 'Open your workspace' : 'Create a class'}<Arrow/></a><button className="moment-explore" type="button" onClick={scrollToExperience}>Explore the preview<Arrow down/></button></div></div></section>
       <section className="moment-showcase" aria-label="MOMENT product preview"><ProductPreview/></section>
-      <ResearchFolio/>
     </div>
   </main>;
 }
