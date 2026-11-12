@@ -57,7 +57,7 @@ function ProductPreview() {
     <div className="moment-preview-bar"><span className="moment-preview-brand"><SeedLogo/>MOMENT <i/> Explore</span><span className="moment-preview-mode">Practice portfolio</span></div>
     <div className="moment-preview-body">
       <div className="moment-preview-intro"><h2>Look Beyond the Price.</h2><p>Choose a signal to see more of the company.</p><div className="moment-signal-list" role="group" aria-label="Explore company evidence">{(Object.keys(signals) as Signal[]).map((item) => <button key={item} type="button" aria-pressed={signal === item} className={signal === item ? 'is-selected' : ''} onClick={() => setSignal(item)}>{item}</button>)}</div></div>
-      <div className="moment-preview-detail"><span className="moment-preview-note">Illustrative company view</span><h3>{current.title}</h3><p>{current.detail}</p><div className="moment-preview-chart" role="img" aria-label="Illustrative trend, not market data"><svg viewBox="0 0 290 100" preserveAspectRatio="none" aria-hidden="true"><path d={current.path} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg></div><div className="moment-preview-choice"><span>What would you do?</span><div role="group" aria-label="Choose a virtual practice decision">{(['Buy', 'Hold', 'Sell'] as Decision[]).map((item) => <button key={item} type="button" aria-pressed={decision === item} className={decision === item ? 'is-selected' : ''} onClick={() => setDecision(item)}>{item}</button>)}</div><p aria-live="polite">{decision ? `${decision} selected for this practice view.` : 'Virtual decisions only.'}</p></div></div>
+      <div className="moment-preview-detail"><span className="moment-preview-note">Illustrative company view</span><div className="moment-preview-evidence" key={signal}><h3>{current.title}</h3><p>{current.detail}</p><div className="moment-preview-chart" role="img" aria-label="Illustrative trend, not market data"><svg viewBox="0 0 290 100" preserveAspectRatio="none" aria-hidden="true"><path d={current.path} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></svg></div></div><div className="moment-preview-choice"><span>What would you do?</span><div role="group" aria-label="Choose a virtual practice decision">{(['Buy', 'Hold', 'Sell'] as Decision[]).map((item) => <button key={item} type="button" aria-pressed={decision === item} className={decision === item ? 'is-selected' : ''} onClick={() => setDecision(item)}>{item}</button>)}</div><p aria-live="polite" key={decision ?? 'none'}>{decision ? `${decision} selected for this practice view.` : 'Virtual decisions only.'}</p></div></div>
     </div>
   </div>;
 }
@@ -69,7 +69,7 @@ const learningVideoSrc: string | null = null;
 function LearningFilm() {
   return <section className="moment-film moment-reveal" aria-labelledby="film-heading">
     <div className="moment-film-heading"><h2 id="film-heading">See the Bigger Picture.</h2><p>A closer look at learning in MOMENT will live here once the classroom experience is complete.</p></div>
-    <div className="moment-film-frame" aria-label="Reserved space for the MOMENT learning film">
+    <div className="moment-film-frame moment-drift" aria-label="Reserved space for the MOMENT learning film">
       {learningVideoSrc ? <video src={learningVideoSrc} autoPlay muted loop playsInline controls aria-label="MOMENT learning walkthrough"/> : <div className="moment-film-poster"><span className="moment-film-aperture" aria-hidden="true"><SeedLogo/></span><span>Learning film coming later</span></div>}
     </div>
   </section>;
@@ -81,6 +81,20 @@ function ClassroomPreview() {
     <div className="moment-classroom-windowbody"><div><span className="moment-classroom-step">Your class</span><h3>Create Your Class.</h3><p>Choose a starting budget and investment access. You can change these later.</p></div><div className="moment-classroom-fields"><div><span>Class name</span><strong>Economics · Period 3</strong></div><div><span>Starting virtual cash per student</span><strong>$10,000</strong></div><div><span>What can students invest in?</span><strong>All supported stocks</strong></div></div></div>
     <div className="moment-classroom-windowfoot">Illustrative setup · Saved in this browser · No real accounts or trades</div>
   </div>;
+}
+
+function InquiryScene() {
+  const questions = ['What does this company make?', 'How does it earn?', 'What else could change its story?'];
+  return <section className="moment-inquiry moment-reveal" aria-labelledby="inquiry-heading">
+    <div className="moment-inquiry-glass moment-drift">
+      <div className="moment-inquiry-intro"><h2 id="inquiry-heading">Ask What the Price Can’t Answer.</h2><p>One number can start an investigation. The next question is where understanding begins.</p></div>
+      <ol>{questions.map((question, index) => <li key={question}><span aria-hidden="true">0{index + 1}</span><strong>{question}</strong></li>)}</ol>
+    </div>
+  </section>;
+}
+
+function PracticeScene() {
+  return <section className="moment-practice moment-reveal" aria-labelledby="practice-heading"><div className="moment-practice-glass moment-drift"><h2 id="practice-heading">Room to Think Before You Choose.</h2><p>A virtual decision gives students a way to test what they think, with the evidence still in view.</p><span>Explore <Arrow/> Consider <Arrow/> Decide</span></div></section>;
 }
 
 export default function Landing({ returning }: { returning: boolean }) {
@@ -102,6 +116,32 @@ export default function Landing({ returning }: { returning: boolean }) {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const root = landingRef.current;
+    if (!root || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const planes = Array.from(root.querySelectorAll<HTMLElement>('.moment-drift'));
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const viewport = window.innerHeight;
+      const limit = window.innerWidth <= 600 ? 16 : 38;
+      const positions = planes.map((plane) => {
+        const rect = plane.getBoundingClientRect();
+        return Math.max(-limit, Math.min(limit, (viewport / 2 - rect.top - rect.height / 2) * .09));
+      });
+      planes.forEach((plane, index) => plane.style.setProperty('--glass-drift', `${positions[index]}px`));
+    };
+    const queue = () => { if (!frame) frame = window.requestAnimationFrame(update); };
+    update();
+    window.addEventListener('scroll', queue, { passive: true });
+    window.addEventListener('resize', queue);
+    return () => {
+      window.removeEventListener('scroll', queue);
+      window.removeEventListener('resize', queue);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
   return <main className="moment-landing" ref={landingRef}>
     <div className="moment-mural" aria-hidden="true">
       {muralTiles.map((tile, index) => <img key={tile.src} src={tile.src} alt="" width="3840" height={tile.height} loading={index < 2 ? 'eager' : 'lazy'} fetchPriority={index === 0 ? 'high' : 'auto'} decoding="async"/>)}
@@ -111,7 +151,9 @@ export default function Landing({ returning }: { returning: boolean }) {
       <section className="moment-showcase" aria-label="MOMENT product preview"><ProductPreview/></section>
       <LearningFilm/>
       <section className="moment-thesis moment-reveal" aria-labelledby="thesis-heading"><h2 id="thesis-heading">A Price Is Only the Beginning.</h2><p>What a company makes, how it earns, and where it fits in the world are all part of the story. MOMENT gives students a place to look closer before they make a virtual decision.</p></section>
+      <InquiryScene/>
       <section className="moment-classroom moment-reveal" aria-labelledby="classroom-heading"><div className="moment-classroom-copy"><h2 id="classroom-heading">Make Room for Curiosity.</h2><p>Create a class, choose a virtual starting budget, and set the boundaries for what students can explore.</p><a className="moment-primary" href={returning ? '#/teacher' : '#/teacher/setup'}>{returning ? 'Open your workspace' : 'Explore teacher setup'}<Arrow/></a></div><ClassroomPreview/></section>
+      <PracticeScene/>
       <section className="moment-closing moment-reveal" aria-labelledby="closing-heading"><div><h2 id="closing-heading">Look Closer.</h2><p>Every company has more to discover than a changing number. Give your class a place to ask better questions and practice deciding for themselves.</p><a className="moment-primary" href={returning ? '#/teacher' : '#/teacher/setup'}>{returning ? 'Open your workspace' : 'Create a class'}<Arrow/></a></div></section>
     </div>
   </main>;
