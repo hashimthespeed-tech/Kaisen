@@ -55,6 +55,19 @@ body:has(.moment-landing) ::selection{background:#ffdbab;color:#07152d}
 .moment-preview-choice button:hover{background:#e7f0fb}
 .moment-preview-choice button.is-selected{background:#173b6b;border-color:#173b6b;color:#fff}
 .moment-preview-choice p{min-height:16px;margin-top:9px;font-size:10px;color:#627996}
+.moment-research{max-width:1100px;margin:175px auto 0;padding:0 24px;color:#f7f9ff}
+.moment-research-heading{max-width:580px;margin:0 auto 34px;text-align:center;text-shadow:0 3px 20px #021129}
+.moment-research-heading h2{font-size:clamp(38px,5vw,66px);line-height:1.04;letter-spacing:-.035em;text-wrap:balance;margin:0 0 16px}
+.moment-research-heading p{max-width:480px;margin:auto;color:#d5e5f6;font-size:16px;line-height:1.55}
+.moment-folio-shell{overflow:hidden;border-radius:16px;background:radial-gradient(ellipse at 50% 32%,#f0f5f9,#c5d2df 74%,#a9b9ca);box-shadow:0 30px 85px #010d28a6,0 3px 22px #0008;color:#203854}
+.moment-folio-stage{height:590px;position:relative}
+.moment-folio-stage canvas,.moment-folio-stage picture,.moment-folio-stage img{position:absolute;inset:0;width:100%;height:100%;display:block}
+.moment-folio-stage img{object-fit:contain}
+.moment-folio-caption{min-height:59px;padding:10px 24px;display:flex;align-items:center;gap:20px;border-top:1px solid #ffffff8a;background:#e9f0f5bf;font-size:12px}
+.moment-folio-caption span:first-child{font-weight:750}
+.moment-folio-caption span:nth-child(2){color:#60758d}
+.moment-folio-caption button{margin-left:auto;border:1px solid #aabed2;border-radius:100px;background:#fff9;color:#1d426d;padding:8px 13px;font-size:11px;font-weight:750}
+.moment-folio-caption button:hover{background:#fff}
 @keyframes moment-night-clear{from{opacity:.35}to{opacity:0}}
 @keyframes moment-header-enter{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes moment-focus{from{opacity:.4;filter:blur(4px);transform:translateY(14px)}to{opacity:1;filter:blur(0);transform:translateY(0)}}
@@ -79,6 +92,14 @@ body:has(.moment-landing) ::selection{background:#ffdbab;color:#07152d}
   .moment-preview-detail{padding:20px 18px 18px;min-height:310px}
   .moment-preview-detail h3{font-size:23px}
   .moment-preview-chart{height:70px}
+  .moment-research{margin-top:115px;padding:0 17px}
+  .moment-research-heading{margin-bottom:22px}
+  .moment-research-heading h2{font-size:39px}
+  .moment-research-heading p{font-size:14px}
+  .moment-folio-shell{border-radius:14px}
+  .moment-folio-stage{height:310px}
+  .moment-folio-caption{padding:10px 14px;gap:8px;font-size:10px;flex-wrap:wrap}
+  .moment-folio-caption button{font-size:10px}
 }
 @media(prefers-reduced-motion:reduce){
   .moment-landing *{scroll-behavior:auto}

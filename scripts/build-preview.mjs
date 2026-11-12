@@ -17,6 +17,10 @@ for (const image of Array.from({ length: 12 }, (_, index) => `moment-mural-${Str
   code = code.replaceAll(`/${image}`, data);
   css = css.replaceAll(`../${image}`, data).replaceAll(`/${image}`, data);
 }
+for (const [asset, mime] of [["moment-research-folio.glb", "model/gltf-binary"], ["moment-research-poster.webp", "image/webp"], ["moment-research-open.webp", "image/webp"]]) {
+  const bytes = await readFile(path.join(root, asset));
+  code = code.replaceAll(`/${asset}`, `data:${mime};base64,${bytes.toString("base64")}`);
+}
 const assetDirectory = path.dirname(path.join(root, style[1]));
 for (const match of [...css.matchAll(/url\(([^)]+\.woff2)\)/g)]) {
   const asset = match[1].replace(/["']/g, "");
