@@ -8,7 +8,7 @@ from zipfile import ZipFile, ZIP_DEFLATED
 
 root = Path(__file__).resolve().parents[1]
 source = root / 'dist-preview'
-files = ['index.html', 'licenses/Inter.txt', 'licenses/Playfair-Display.txt']
+files = ['index.html', 'licenses/Inter.txt', 'licenses/Playfair-Display.txt', 'licenses/Instrument-Sans.txt']
 for name in files:
     if not (source / name).is_file():
         raise SystemExit('Missing preview files. Run npm run build:preview first.')

@@ -86,6 +86,7 @@ function ClassroomPreview() {
 function InquiryScene() {
   const questions = ['What does this company make?', 'How does it earn?', 'What else could change its story?'];
   return <section className="moment-inquiry moment-reveal" aria-labelledby="inquiry-heading">
+    <figure className="moment-inquiry-art"><img src="/moment-research-folio.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="Illustrative glass research folio containing a chart, product sketches, and an industry map"/><figcaption>Research concept visual</figcaption></figure>
     <div className="moment-inquiry-glass moment-drift">
       <div className="moment-inquiry-intro"><h2 id="inquiry-heading">Ask What the Price Can’t Answer.</h2><p>One number can start an investigation. The next question is where understanding begins.</p></div>
       <ol>{questions.map((question, index) => <li key={question}><span aria-hidden="true">0{index + 1}</span><strong>{question}</strong></li>)}</ol>
@@ -94,7 +95,7 @@ function InquiryScene() {
 }
 
 function PracticeScene() {
-  return <section className="moment-practice moment-reveal" aria-labelledby="practice-heading"><div className="moment-practice-glass moment-drift"><h2 id="practice-heading">Room to Think Before You Choose.</h2><p>A virtual decision gives students a way to test what they think, with the evidence still in view.</p><span>Explore <Arrow/> Consider <Arrow/> Decide</span></div></section>;
+  return <section className="moment-practice moment-reveal" aria-labelledby="practice-heading"><div className="moment-practice-glass moment-drift"><h2 id="practice-heading">Room to Think Before You Choose.</h2><p>A virtual decision gives students a way to test what they think, with the evidence still in view.</p></div><figure className="moment-practice-art"><img src="/moment-practice-screen.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="Illustrative glass screen with an evidence chart and three virtual decision choices"/><figcaption>Virtual decision concept visual</figcaption></figure></section>;
 }
 
 export default function Landing({ returning }: { returning: boolean }) {
@@ -154,7 +155,7 @@ export default function Landing({ returning }: { returning: boolean }) {
       <InquiryScene/>
       <section className="moment-classroom moment-reveal" aria-labelledby="classroom-heading"><div className="moment-classroom-copy"><h2 id="classroom-heading">Make Room for Curiosity.</h2><p>Create a class, choose a virtual starting budget, and set the boundaries for what students can explore.</p><a className="moment-primary" href={returning ? '#/teacher' : '#/teacher/setup'}>{returning ? 'Open your workspace' : 'Explore teacher setup'}<Arrow/></a></div><ClassroomPreview/></section>
       <PracticeScene/>
-      <section className="moment-closing moment-reveal" aria-labelledby="closing-heading"><div><h2 id="closing-heading">Look Closer.</h2><p>Every company has more to discover than a changing number. Give your class a place to ask better questions and practice deciding for themselves.</p><a className="moment-primary" href={returning ? '#/teacher' : '#/teacher/setup'}>{returning ? 'Open your workspace' : 'Create a class'}<Arrow/></a></div></section>
+      <section className="moment-closing moment-reveal" aria-labelledby="closing-heading"><div className="moment-closing-glass moment-drift"><h2 id="closing-heading">Look Closer.</h2><p>Every company has more to discover than a changing number. Give your class a place to ask better questions and practice deciding for themselves.</p><a className="moment-primary" href={returning ? '#/teacher' : '#/teacher/setup'}>{returning ? 'Open your workspace' : 'Create a class'}<Arrow/></a></div></section>
     </div>
   </main>;
 }
