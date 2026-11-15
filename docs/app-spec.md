@@ -106,9 +106,9 @@ The teacher's idea of limiting students to “well-reputed, long-term” stocks 
 
 ### 3.5 Optional first-time introduction and guided purchase
 
-**Decided:** The introduction is short and scrollable, covering investing and what the app does using owner-provided teaching sources. It flows into an interactive walkthrough where students try controls. The student chooses one of the approved starter stocks—**Microsoft, Visa, Google, or Apple**—and is guided through a virtual purchase using **10% of their starting cash**, then enters Learn. They can skip the entire sequence. Students can replay the walkthrough from Settings.
+**Decided:** The introduction is short and scrollable, covering investing and what the app does using owner-provided teaching sources. It flows into an interactive walkthrough where students try controls. The student chooses one of the approved starter stocks—**Microsoft, Visa, Google, or Apple**—and is guided through a virtual purchase using **10% of their starting cash**, then enters Learn. They can skip the entire sequence. Students can replay the walkthrough from Settings; replay starts it over. Students who already hold shares in one of the four starter stocks do not have to buy that stock again.
 
-**Open:** Exact text and teaching sources, and how an interrupted guide resumes. Onboarding offers only the four starter stocks, with no additional search. Skip goes to Portfolio; replay is available from Settings.
+**Open:** Exact text and teaching sources. Onboarding offers only the four starter stocks, with no additional search. Skip goes to Portfolio; replay from Settings starts the walkthrough over. Students who already own a chosen starter stock can continue without buying it again.
 
 ### 3.6 Portfolio
 
@@ -220,7 +220,7 @@ This list was rechecked against all 125 turns of the earlier shared chat, includ
 
 ### First use, portfolio, and trading
 
-9. The scrollable introduction and click-through walkthrough are one first-time flow; students can replay the walkthrough from Settings. Skip goes to Portfolio. How is an interrupted guide resumed?
+9. The scrollable introduction and click-through walkthrough are one first-time flow; replay from Settings starts over. Skip goes to Portfolio. Interrupted-flow behavior remains to be defined.
 10. Microsoft, Visa, Google, and Apple are the four starter choices, with no additional search during onboarding. The guided first purchase uses 10% of starting cash.
 11. Which chart ranges and point details should Portfolio support? Should classmates' comparisons appear there? The portfolio graph and separate cash/holdings are already approved.
 12. Which markets, quote/news providers, history rights, data delay, and refresh rate are acceptable? How should closed markets, stale quotes, and missing data appear?
