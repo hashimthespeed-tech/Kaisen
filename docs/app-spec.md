@@ -76,7 +76,7 @@ These are product areas and supporting screens, **not final URL or component bou
 
 The investment universe is U.S. and international stocks only, with no cryptocurrency or non-stock products. The owner wants broad searchable stock coverage rather than a hand-picked app-wide list, subject to feasible market-data coverage. A teacher's optional approved list is a separate class control. All class cash, stock values, and portfolio totals display in U.S. dollars, including converted international holdings. Exchange/data coverage and the exchange-rate method remain open.
 
-The starting-cash field is prefilled with **$1,000 virtual**; the teacher chooses the actual value during class creation. A teacher-chosen class timezone determines the weekly allowance payment day, and the teacher may change that timezone after the class starts.
+The starting-cash field is prefilled with **$1,000 virtual**; the teacher chooses the actual value during class creation. A teacher-chosen class timezone determines the weekly allowance payment day, and the teacher may change that timezone after the class starts. Changes to the weekly allowance amount, payment day, or timezone affect future payments only; payments already made are unchanged.
 
 Changing a rule must **not silently liquidate** existing holdings. If a teacher removes a stock from the approved list, students who already own it may sell their shares but cannot buy more under the class rule. Teacher-added money and scheduled deposits must be accounted for separately from investment return. Students should be able to see applicable restrictions and understand why an action was blocked. A trading pause does not require a separate reason message. Teacher changes and adjustments need a history.
 
@@ -88,7 +88,7 @@ The teacher's idea of limiting students to “well-reputed, long-term” stocks 
 
 **Decided individual controls:** The teacher may override allowed stocks, position limit, trading access, and weekly allowance for a single student. Each setting may be overridden independently. Students can see the overrides that apply to them. A student's individual weekly allowance replaces, rather than adds to, the class allowance. A student joining after a class starts receives the full teacher-chosen starting cash and immediately receives the full allowance for the week they join, even if that week's payment day already passed. Future payments follow the class schedule; no prior weeks are paid retroactively.
 
-**Open:** Initial states and valid ranges for optional settings, supported security universe, how teachers restore an individual to current class defaults, how teachers reverse an adjustment, and the precise snapshot time for historical values after read-only reopening. Scheduled deposits use a teacher-chosen, editable class timezone; missed-deposit behavior, changes to the schedule or amount, idempotent accounting, and audit history remain to be defined before activation.
+**Open:** Initial states and valid ranges for optional settings, supported security universe, how teachers restore an individual to current class defaults, how teachers reverse an adjustment, and the precise snapshot time for historical values after read-only reopening. Scheduled deposits use a teacher-chosen, editable class timezone; missed-deposit behavior, payment-once accounting, and audit history remain to be defined before activation.
 
 ### 3.3 Teacher workspace and class detail
 
