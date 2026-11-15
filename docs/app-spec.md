@@ -19,8 +19,8 @@ The original Reign summary described students explaining trades in writing. The 
 
 The owner explicitly reconfirmed the core foundation in voice review: teacher-created classes, virtual money with real stock data, no real trading, no required written answers, and feedback about decision quality.
 
-- The product is a classroom stock-market learning experience for students, with teachers creating the classes. The owner is part of the high-school target audience.
-- The United States is the first intended country. Students are age 14 or older; no upper age limit or grade restriction has been selected. This followed review of CFPB youth financial education, FTC COPPA guidance, and U.S. Department of Education FERPA guidance.
+- The product is a classroom stock-market learning experience for students, with teachers creating the classes. The owner is part of the student target audience.
+- The United States is the first intended country. Students are age 14 or older; no upper age limit has been selected. The current signup flow checks the age minimum by date of birth.
 - Students use **virtual money** to make decisions about real stocks and follow real market information. No real money is invested or traded.
 - The core educational value is understanding a decision, the evidence available at the time, and what happened afterward. A high balance or lucky outcome alone is not proof of understanding.
 - The experience should be comprehensible quickly and avoid the old app's excessive pages, controls, and game-like complexity.
@@ -64,11 +64,11 @@ These are product areas and supporting screens, **not final URL or component bou
 
 ### 3.1 Teacher signup and login
 
-**Decided:** Teacher accounts need signup and login, and the first class is created as part of the signup journey. One teacher account may create and manage multiple classes; each class has one managing teacher, with no co-teachers. Returning teachers must be able to access their workspace. Teachers and students can use Continue with Google or email and password. Forgotten passwords for email-and-password accounts are reset through an email link. During the current build, anyone may create a teacher account. The eventual school rollout must verify that a teacher works under a school that has signed up for Accrete.
+**Decided:** Teacher accounts need signup and login, and the first class is created as part of the signup journey. One teacher account may create and manage multiple classes; each class has one managing teacher, with no co-teachers. Returning teachers must be able to access their workspace. Teachers and students can use Continue with Google or email and password. Forgotten passwords for email-and-password accounts are reset through an email link. Teacher signup is open.
 
 **Prototype only:** The first step collects a name and email for local review. It creates no account, sends no email, collects no password, and has no authentication or password recovery.
 
-**Open:** How schools sign up, how teacher affiliation is verified, when open teacher signup ends, whether a teacher may belong to multiple schools, minimum teacher age, and account recovery for Google-only accounts.
+**Open:** Minimum teacher age and account recovery for Google-only accounts.
 
 ### 3.2 Create and edit a class
 
@@ -94,9 +94,9 @@ The teacher's idea of limiting students to “well-reputed, long-term” stocks 
 
 ### 3.4 Student join, signup, login, and recovery
 
-**Decided:** Students join a teacher-created class with either an invitation link or a typed class code and then access the student experience. Both remain valid until the teacher replaces them. One student account may belong to multiple classes, but every student account must belong to at least one teacher-created class. Each class gives that student a separate virtual cash balance, portfolio, Learn progress, and level; switching classes shows the state for the selected class. Continue with Google and email-and-password login are approved for students and teachers. Forgotten passwords for email-and-password accounts are reset by email. During the current build, signup collects a student's date of birth to check the age-14 minimum. In the eventual school signup flow, students select their school and grade instead of providing date of birth.
+**Decided:** Students join a teacher-created class with either an invitation link or a typed class code and then access the student experience. Both remain valid until the teacher replaces them. One student account may belong to multiple classes, but every student account must belong to at least one teacher-created class. Each class gives that student a separate virtual cash balance, portfolio, Learn progress, and level; switching classes shows the state for the selected class. Continue with Google and email-and-password login are approved for students and teachers. Forgotten passwords for email-and-password accounts are reset by email. Signup collects a student's date of birth to check the age-14 minimum.
 
-**Open:** How the eventual school/grade flow enforces the age-14 minimum, school/grade verification, privacy requirements, name changes, leaving/transferring a class, invalid/replaced-code recovery, and what students can see before joining. None of this is implemented.
+**Open:** Privacy requirements, name changes, leaving/transferring a class, invalid/replaced-code recovery, and what students can see before joining. None of this is implemented.
 
 ### 3.5 Optional first-time introduction and guided purchase
 
@@ -198,46 +198,44 @@ The recorded working implementation order was: (1) teacher setup/class creation 
 
 This list was rechecked against all 125 turns of the earlier shared chat, including the surrounding teacher-control discussion (turns 29–36), the later conversation, and the owner's voice answers. It excludes questions that the owner already answered. A proposed detail is not treated as approved merely because it appeared in an assistant response.
 
-### Accounts, schools, and class membership
+### Accounts and class membership
 
-1. How do schools sign up, and how is a teacher's employment under an enrolled school verified? When does open teacher signup end? Can a teacher belong to more than one school?
-2. In the eventual school-and-grade signup flow, how is the age-14 minimum checked without collecting date of birth? How are school and grade verified?
-3. May a student leave or transfer a class, and what happens to that class's portfolio and Learn progress afterward? What can a student see before joining a class, and how are invalid or replaced invitations handled?
-4. Which profile fields may students and teachers change? What is the minimum age for a teacher account? How do Google-only users recover access?
+1. May a student leave or transfer a class, and what happens to that class's portfolio and Learn progress afterward? What can a student see before joining a class, and how are invalid or replaced invitations handled?
+2. Which profile fields may students and teachers change? What is the minimum age for a teacher account? How do Google-only users recover access?
 
 ### Teacher controls and money rules
 
-5. What securities are supported: U.S. stocks, exchange-traded funds, or others? Who maintains the eligible universe from which a teacher can allow all or select an approved list?
-6. What do optional class start/end dates do to joining, trading, viewing, and results? What are the initial states and valid ranges for optional trading, position-limit, weekly-deposit, and date settings before a teacher changes them?
-7. If a teacher removes a company that a student owns from the approved list, may the student sell it, only hold it, or do something else? Existing shares must not be sold automatically. What does pausing trading block?
-8. Which class rules can be overridden for one student, and how are conflicts resolved between class rules and individual exceptions?
-9. Which timezone controls the weekly deposit day? How are missed, changed, backdated, or reversed deposits handled? May a teacher remove virtual cash, and what history or notice must the student see?
-10. Which teacher views and reports are required for student participation, decisions, progress, trading, and games? Are class archives, exports, and deletion required?
+3. What securities are supported: U.S. stocks, exchange-traded funds, or others? Who maintains the eligible universe from which a teacher can allow all or select an approved list?
+4. What do optional class start/end dates do to joining, trading, viewing, and results? What are the initial states and valid ranges for optional trading, position-limit, weekly-deposit, and date settings before a teacher changes them?
+5. If a teacher removes a company that a student owns from the approved list, may the student sell it, only hold it, or do something else? Existing shares must not be sold automatically. What does pausing trading block?
+6. Which class rules can be overridden for one student, and how are conflicts resolved between class rules and individual exceptions?
+7. Which timezone controls the weekly deposit day? How are missed, changed, backdated, or reversed deposits handled? May a teacher remove virtual cash, and what history or notice must the student see?
+8. Which teacher views and reports are required for student participation, decisions, progress, trading, and games? Are class archives, exports, and deletion required?
 
 ### First use, portfolio, and trading
 
-11. Is the interactive walkthrough combined with the short scrollable introduction or separate? Where does Skip lead, and how is an interrupted guide resumed? Replay from Help is already in the plan.
-12. Which 3–5 companies are the final starter choices? Can a student search beyond them during onboarding, and how much virtual cash may the guided first purchase use? NVIDIA and Google were examples, not approved final choices or promises of safety.
-13. Which chart ranges and point details should Portfolio support? Should classmates' comparisons appear there? The portfolio graph and separate cash/holdings are already approved.
-14. Which markets, quote/news providers, history rights, data delay, and refresh rate are acceptable? How should closed markets, stale quotes, and missing data appear?
-15. Should virtual orders be entered as shares, dollars, percentages, or a combination? Are fractional shares allowed? When and at what price do orders execute, including outside market hours? How are rejected or interrupted orders handled?
-16. Should fees, dividends, splits, or other corporate actions affect the simulation? Which return calculation and chart treatment keep teacher cash additions and weekly deposits separate from investment gains?
+9. Is the interactive walkthrough combined with the short scrollable introduction or separate? Where does Skip lead, and how is an interrupted guide resumed? Replay from Help is already in the plan.
+10. Which 3–5 companies are the final starter choices? Can a student search beyond them during onboarding, and how much virtual cash may the guided first purchase use? NVIDIA and Google were examples, not approved final choices or promises of safety.
+11. Which chart ranges and point details should Portfolio support? Should classmates' comparisons appear there? The portfolio graph and separate cash/holdings are already approved.
+12. Which markets, quote/news providers, history rights, data delay, and refresh rate are acceptable? How should closed markets, stale quotes, and missing data appear?
+13. Should virtual orders be entered as shares, dollars, percentages, or a combination? Are fractional shares allowed? When and at what price do orders execute, including outside market hours? How are rejected or interrupted orders handled?
+14. Should fees, dividends, splits, or other corporate actions affect the simulation? Which return calculation and chart treatment keep teacher cash additions and weekly deposits separate from investment gains?
 
 ### Learn, situations, and feedback
 
-17. What are the first owner-provided learning topic, sources, and situation? What is the learning objective and evidence that students may use at the decision pause?
-18. Are lessons self-paced or teacher-assigned? What are their length, prerequisite, retry, level, and scoring rules? Progress must reflect learning rather than profit alone.
-19. Does a situation use the student's class portfolio or a separate scenario balance? If separate, which results affect class progress or standings?
-20. What are the decision timer, quantity bounds, timeout behavior, and pause/replay controls for situations? Buy/sell/hold and a bounded amount are already decided.
-21. Is a quick selected reason used at some decisions? When do students see the outcome, classmates' choices, and feedback? Which parts may AI draft, and who checks accuracy? Basic feedback must work without AI.
+15. What are the first owner-provided learning topic, sources, and situation? What is the learning objective and evidence that students may use at the decision pause?
+16. Are lessons self-paced or teacher-assigned? What are their length, prerequisite, retry, level, and scoring rules? Progress must reflect learning rather than profit alone.
+17. Does a situation use the student's class portfolio or a separate scenario balance? If separate, which results affect class progress or standings?
+18. What are the decision timer, quantity bounds, timeout behavior, and pause/replay controls for situations? Buy/sell/hold and a bounded amount are already decided.
+19. Is a quick selected reason used at some decisions? When do students see the outcome, classmates' choices, and feedback? Which parts may AI draft, and who checks accuracy? Basic feedback must work without AI.
 
 ### Market, Research, games, and operations
 
-22. Which news sources, markets, archive depth, update schedule, and editorial checks support Market? The organized lead-story, grouped-headline, today/week/month, and date-lookup structure was already accepted.
-23. Whose activity defines Research's “most researched” and “most purchased” rankings, over what period? How is a short explanation of interest sourced without claiming an unproven cause?
-24. What exact information and tools belong in a company deep dive: search, financial context, product/supplier relationships, saved evidence, or others? A deeper informational view without buy prompts is already decided.
-25. Which class game modes exist besides solo/class-hosted situations? The earlier idea of roughly three modes was not a settled count.
-26. What are team size, late-join rules, disconnected-leader replacement, teammate discussion tools, teacher launch/pause/reveal controls, scoring, ties, and comparison rules? Team selection, random leader, stable leader for a game, shared teammate role, and leader-only submission are already decided.
-27. What are the production help/support, student privacy, data-retention, deletion, export, accessibility, mobile, and connection-loss requirements?
+20. Which news sources, markets, archive depth, update schedule, and editorial checks support Market? The organized lead-story, grouped-headline, today/week/month, and date-lookup structure was already accepted.
+21. Whose activity defines Research's “most researched” and “most purchased” rankings, over what period? How is a short explanation of interest sourced without claiming an unproven cause?
+22. What exact information and tools belong in a company deep dive: search, financial context, product/supplier relationships, saved evidence, or others? A deeper informational view without buy prompts is already decided.
+23. Which class game modes exist besides solo/class-hosted situations? The earlier idea of roughly three modes was not a settled count.
+24. What are team size, late-join rules, disconnected-leader replacement, teammate discussion tools, teacher launch/pause/reveal controls, scoring, ties, and comparison rules? Team selection, random leader, stable leader for a game, shared teammate role, and leader-only submission are already decided.
+25. What are the production help/support, student privacy, data-retention, deletion, export, accessibility, mobile, and connection-loss requirements?
 
 The teacher's choice between **all supported companies** and **an approved list** is settled. The remaining question about an already-owned company concerns behavior **after the teacher changes that list**, which the earlier conversation did not specify.
