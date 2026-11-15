@@ -1,10 +1,10 @@
-# MOMENT application specification — decision inventory
+# Accrete application specification — decision inventory
 
-This document records **application behavior and content**, not visual design. MOMENT is the current **provisional** name for the rebuild previously called Reign. It is a decision inventory for review, not a claim that the unbuilt pages already work or that unresolved rules have been chosen.
+This document records **application behavior and content**, not visual design. Accrete is the current **temporary** name for the rebuild previously called Reign and, later, MOMENT. It is a decision inventory for review, not a claim that the unbuilt pages already work or that unresolved rules have been chosen.
 
 ## Evidence and status
 
-This inventory uses the [earlier shared conversation](https://chatgpt.com/s/cx_6aefbdf089a481918f23f9e1b7fb67be), especially its product discussion in turns 2–38 and the implementation order in turn 43; the later MOMENT conversation; [product-direction.md](product-direction.md); and the current prototype in `src/App.tsx`, `src/model.ts`, and `src/storage.ts`. The shared conversation was retrieved in full for this review. Old Reign, Sift, and Accrete visual proposals are historical; they do not define the app's current name or interface.
+This inventory uses the [earlier shared conversation](https://chatgpt.com/s/cx_6aefbdf089a481918f23f9e1b7fb67be), especially its product discussion in turns 2–38 and the implementation order in turn 43; the later MOMENT conversation; [product-direction.md](product-direction.md); and the current prototype in `src/App.tsx`, `src/model.ts`, and `src/storage.ts`. The shared conversation was retrieved in full for this review. Older Reign, Sift, and MOMENT names and visual proposals are historical; the owner has now chosen Accrete as the temporary app name. This does not select a final brand or interface.
 
 - **Decided:** The owner said this directly or clearly accepted it in the conversation.
 - **Working direction:** An assistant proposal was saved as a starting structure, but the owner did not lock every detail.
@@ -17,7 +17,10 @@ The original Reign summary described students explaining trades in writing. The 
 
 **Decided**
 
+The owner explicitly reconfirmed the core foundation in voice review: teacher-created classes, virtual money with real stock data, no real trading, no required written answers, and feedback about decision quality.
+
 - The product is a classroom stock-market learning experience for students, with teachers creating the classes. The owner is part of the high-school target audience.
+- The United States is the first intended country. Students are age 14 or older; no upper age limit or grade restriction has been selected. This followed review of CFPB youth financial education, FTC COPPA guidance, and U.S. Department of Education FERPA guidance.
 - Students use **virtual money** to make decisions about real stocks and follow real market information. No real money is invested or traded.
 - The core educational value is understanding a decision, the evidence available at the time, and what happened afterward. A high balance or lucky outcome alone is not proof of understanding.
 - The experience should be comprehensible quickly and avoid the old app's excessive pages, controls, and game-like complexity.
@@ -25,26 +28,31 @@ The original Reign summary described students explaining trades in writing. The 
 - The owner will provide teaching topics, learning sources, and curriculum. Do not create factual lessons, historical answer keys, or market claims without those inputs.
 - The app should still provide useful basic feedback when AI is unavailable. The original brief allows AI to help turn trading history into plain-language feedback later; AI is not a prerequisite for the core experience.
 
+**Decided navigation**
+
+- The everyday student navigation has five main areas: **Portfolio, Learn, Market, Research, Class**. Account settings are in a separate menu. The owner explicitly approved this set in voice review.
+
 **Working direction**
 
-- The everyday student navigation has four main areas: **Portfolio, Learn, Market, Research**. A lightweight **Join/Class game** entry and an account menu serve the remaining flows. This was accepted as the starting screen map, not as final navigation design.
 - The original brief also values classmates comparing decisions, rivalries, and short challenges. Exact social and ranking mechanics have not been decided.
+
+**Approved scope:** The owner wants one complete app, with all planned student areas and supporting flows in scope. Development may proceed in steps, but those steps are not separate product versions or releases. The details of each area remain subject to the questions below.
 
 ## 2. End-to-end journeys
 
 ### Teacher's first visit
 
-Teacher signup/login → create a class → choose a starting virtual balance and class investing rules → review → receive a class code or invitation → teacher workspace → students join. Class creation belongs in teacher signup, rather than being an unrelated optional setup. The public landing page is deferred and outside this app specification.
+Teacher signup/login → create a class → choose a starting virtual balance and class investing rules → review → receive a class code and invitation link → teacher workspace → students join. Class creation belongs in teacher signup, rather than being an unrelated optional setup. The public landing page is deferred and outside this app specification. The owner clarified that its existing code should remain; only the app plan excludes it for now.
 
 Only the **browser-local teacher details, class setup, review, and workspace preview** exist today. Real signup, invitations, and student joining do not.
 
 ### Student's first visit
 
-Join a teacher-created class by code or invitation → create/access the student account → optional short, scrollable introduction to investing and the app → choose from **3–5 starter companies** → guided first virtual purchase → **Learn**. The entire introduction and guided-purchase sequence can be skipped. NVIDIA and Google/Alphabet were examples of recognizable starter companies, **not** approved final choices or a claim that those stocks are stable or safe.
+Join a teacher-created class by code or invitation link → create/access the student account → optional short, scrollable introduction to investing and the app → choose from **3–5 starter companies** → guided first virtual purchase → **Learn**. The entire introduction and guided-purchase sequence can be skipped. NVIDIA and Google/Alphabet were examples of recognizable starter companies, **not** approved final choices or a claim that those stocks are stable or safe.
 
 A short interactive walkthrough with text pointers that let the student try controls was also requested. It should be skippable and replayable from Help. Whether that walkthrough is combined with the scrollable introduction or appears separately is open.
 
-**Working direction:** Portfolio was proposed as the normal home for a returning student. The first guided purchase explicitly ends in Learn; the exact default route on later visits is still to be confirmed.
+**Decided:** Portfolio is the normal home for a returning student. The first guided purchase explicitly ends in Learn. The destination after skipping onboarding is still open.
 
 ### Ongoing student loop
 
@@ -56,15 +64,17 @@ These are product areas and supporting screens, **not final URL or component bou
 
 ### 3.1 Teacher signup and login
 
-**Decided:** Teacher accounts need signup and login, and the first class is created as part of the signup journey. Returning teachers must be able to access their workspace. Password/account recovery is a supporting flow.
+**Decided:** Teacher accounts need signup and login, and the first class is created as part of the signup journey. One teacher account may create and manage multiple classes; each class has one managing teacher, with no co-teachers. Returning teachers must be able to access their workspace. Teachers and students can use Continue with Google or email and password. Forgotten passwords for email-and-password accounts are reset through an email link. During the current build, anyone may create a teacher account. The eventual school rollout must verify that a teacher works under a school that has signed up for Accrete.
 
 **Prototype only:** The first step collects a name and email for local review. It creates no account, sends no email, collects no password, and has no authentication or password recovery.
 
-**Open:** Authentication method, identity verification, school or teacher verification, account recovery method, and whether a teacher may belong to multiple schools or organizations.
+**Open:** How schools sign up, how teacher affiliation is verified, when open teacher signup ends, whether a teacher may belong to multiple schools, minimum teacher age, and account recovery for Google-only accounts.
 
 ### 3.2 Create and edit a class
 
-**Decided:** A teacher sets starting virtual cash, chooses all supported companies or a teacher-approved company list, may set a maximum single-company share of a portfolio, may pause/resume trading, and may set class start/end dates. Settings should be editable later. Teachers also need individual-student exceptions and virtual-cash adjustments in a later feature. A class-wide weekly virtual allowance is optional; the teacher chooses an amount and day, can pause/change it, and deposits happen even when students are offline.
+**Decided:** A teacher sets starting virtual cash, chooses either all supported companies or a teacher-approved company list during class creation, may set a maximum single-company share of a portfolio, may pause/resume trading, and may set class start/end dates. Settings should be editable later. Teachers also need individual-student exceptions and virtual-cash adjustments in the complete app. A class-wide weekly virtual allowance is optional; the teacher chooses an amount and day, can pause/change it, and deposits happen even when students are offline.
+
+The starting-cash field is prefilled with **$1,000 virtual**; the teacher chooses the actual value during class creation.
 
 Changing a rule must **not silently liquidate** existing holdings. Teacher-added money and scheduled deposits must be accounted for separately from investment return. Students should be able to see applicable restrictions and understand why an action was blocked. Teacher changes and adjustments need a history.
 
@@ -72,7 +82,7 @@ The teacher's idea of limiting students to “well-reputed, long-term” stocks 
 
 **Prototype only:** Three steps exist: teacher details → class settings → review. Basic class fields are name, starting virtual cash, and investment access. An optional disclosure contains trading enabled/paused, single-stock percentage limit, weekly virtual amount and day, and optional class dates. The review shows the values before saving; a teacher can edit afterward. These values are stored in this browser only. Trading limits, scheduled deposits, and start/end enforcement do **not** operate yet.
 
-**Open:** Exact launch defaults, supported security universe, what a changed approved list does to existing holdings, precedence of individual overrides, how teachers reverse an adjustment, class date behavior, and whether more than one teacher manages a class. Scheduled deposits also need a timezone, idempotent accounting, and an audit history before activation.
+**Open:** Initial states and valid ranges for optional settings, supported security universe, what a changed approved list does to existing holdings, precedence of individual overrides, how teachers reverse an adjustment, and class date behavior. Scheduled deposits also need a timezone, idempotent accounting, and an audit history before activation.
 
 ### 3.3 Teacher workspace and class detail
 
@@ -80,13 +90,13 @@ The teacher's idea of limiting students to “well-reputed, long-term” stocks 
 
 **Prototype only:** The workspace lists locally saved classes. A class detail view displays saved settings, an eight-character **preview** code, a copy action, and a zero-students state. The code cannot admit students. No student activity, progress, game hosting, adjustments, or actual rule enforcement exists.
 
-**Open:** Teacher dashboard metrics, student-detail contents, progress/reporting model, exports, invitation management, co-teachers, permissions, and class archival/deletion rules.
+**Open:** Teacher dashboard metrics, student-detail contents, progress/reporting model, exports, invitation management, permissions, and class archival/deletion rules.
 
 ### 3.4 Student join, signup, login, and recovery
 
-**Decided:** Students join a teacher-created class with an invitation or class code and then access the student experience. A classless full account is excluded. Login and recovery are required supporting flows.
+**Decided:** Students join a teacher-created class with either an invitation link or a typed class code and then access the student experience. Both remain valid until the teacher replaces them. One student account may belong to multiple classes, but every student account must belong to at least one teacher-created class. Each class gives that student a separate virtual cash balance, portfolio, Learn progress, and level; switching classes shows the state for the selected class. Continue with Google and email-and-password login are approved for students and teachers. Forgotten passwords for email-and-password accounts are reset by email. During the current build, signup collects a student's date of birth to check the age-14 minimum. In the eventual school signup flow, students select their school and grade instead of providing date of birth.
 
-**Open:** Student identity and authentication, age/privacy requirements, whether one student may join several classes, code expiry/revocation, name changes, leaving/transferring a class, invalid/expired-code recovery, and what students can see before joining. None of this is implemented.
+**Open:** How the eventual school/grade flow enforces the age-14 minimum, school/grade verification, privacy requirements, name changes, leaving/transferring a class, invalid/replaced-code recovery, and what students can see before joining. None of this is implemented.
 
 ### 3.5 Optional first-time introduction and guided purchase
 
@@ -98,7 +108,7 @@ The teacher's idea of limiting students to “well-reputed, long-term” stocks 
 
 **Decided:** The portfolio follows real market prices over time and includes a prominent value graph. Keep available cash and invested holdings separate. Show the effects of decisions, not just a final balance. Teacher cash additions and weekly deposits must not count as investment gain.
 
-**Working direction:** A main view shows total portfolio value, period change, available cash, holdings, and recent activity. A chart can provide Today/Week/Month/All ranges and point inspection; these exact controls were proposed, not expressly locked. Individual holdings can lead to company information and selling. Returning students may land here, subject to confirmation.
+**Working direction:** A main view shows total portfolio value, period change, available cash, holdings, and recent activity. A chart can provide Today/Week/Month/All ranges and point inspection; these exact controls were proposed, not expressly locked. Individual holdings can lead to company information and selling. Portfolio is the approved returning-student home.
 
 **Open:** Quote refresh cadence/provider, market-close and delayed-price behavior, valuation at historical dates, return calculation, dividends/splits, unavailable quotes, cash-flow-adjusted performance, and whether class comparison appears here. No live portfolio exists in the prototype.
 
@@ -138,7 +148,7 @@ Feedback should identify specific evidence available at the pause, what the stud
 
 **Decided:** Market is a clearer, organized, simplified financial-news page. It prioritizes **today**, then the recent **week/month**, with lookup for a past date. Stories need sources. Students should understand what happened and which companies or industries were affected. Separate confirmed events from possible interpretations of a price move.
 
-**Working direction:** A lead story, grouped secondary headlines, short summaries, and a fuller linked story view were accepted as the starting page structure.
+**Decided structure:** A lead story, grouped secondary headlines, short summaries, and a fuller linked story view were accepted in the earlier conversation immediately after the proposed structure was described.
 
 **Open:** News/source providers and licensing, geographic/exchange coverage, update cadence, editorial selection, archive depth, attribution format, corrections, and what to show when no reliable explanation exists. Market-to-Research navigation was proposed; its exact behavior is not locked.
 
@@ -148,7 +158,7 @@ Feedback should identify specific evidence available at the pause, what the stud
 
 **Working direction:** Company search and tools to inspect trends, revenue/product context, and supporting sources were proposed. Short guidance can explain how to read evidence within the tool.
 
-**Open:** Whether rankings use MOMENT student activity, the overall market, or another population; time windows; minimum sample sizes; manipulation/privacy safeguards; how “less familiar” is defined; research data providers; relationship evidence standard; saved research; and the exact structure of the deep dive. No ranking, source feed, or company database exists yet.
+**Open:** Whether rankings use Accrete student activity, the overall market, or another population; time windows; minimum sample sizes; manipulation/privacy safeguards; how “less familiar” is defined; research data providers; relationship evidence standard; saved research; and the exact structure of the deep dive. No ranking, source feed, or company database exists yet.
 
 ### 3.13 Class/Join entry, class games, and team play
 
@@ -168,7 +178,7 @@ For team play, one **randomly selected leader per team** remains leader for that
 
 ## 4. Cross-cutting rules
 
-- **Virtual versus real:** All balances, deposits, orders, and outcomes inside MOMENT are virtual. Market prices/news may describe real companies and events when properly sourced. The product must never imply a real-money trade.
+- **Virtual versus real:** All balances, deposits, orders, and outcomes inside Accrete are virtual. Market prices/news may describe real companies and events when properly sourced. The product must never imply a real-money trade.
 - **Accuracy and uncertainty:** News, company relationships, research reasons, historical scenarios, and educational claims need suitable sources. Do not label a company “safe” because it is large or familiar. Do not treat a correct market prediction as the sole learning outcome.
 - **Money accounting:** Keep cash, market value, teacher adjustments, weekly deposits, and investment return distinguishable. Added virtual money does not improve performance by itself.
 - **Teacher rules:** Class defaults must be visible to students and editable by teachers. Individual exceptions and an audit trail are intended later. No settings change silently sells holdings.
@@ -180,44 +190,54 @@ For team play, one **randomly selected leader per team** remains leader for that
 
 The code currently implements **a deferred landing presentation and a single-browser teacher setup prototype**. Its hash routes are `/`, `/teacher/setup`, `/teacher`, `/teacher/class/:id`, and `/teacher/class/:id/edit`, plus recovery states. Saved teacher and class data live only in browser `localStorage` under `reign.teacher-prototype.v1`. Clearing site data removes it. There is no server synchronization, account authorization, student enrollment, live feed, order execution, working deposits, lessons, situations, rankings, or games. The class code is a preview code. The landing page is outside the active app scope.
 
-The prototype currently uses a $10,000 starting-cash default, all supported stocks, trading enabled, no concentration limit, weekly deposits off, and no class dates. It allows a class name and teacher name of 2–80 characters, virtual amounts from $0.01 to $1,000,000, a 1–100% position limit, and 1–100 approved ticker symbols. **These are current implementation choices, not separately approved production defaults or limits.**
+The prototype currently uses a $10,000 starting-cash default, all supported stocks, trading enabled, no concentration limit, weekly deposits off, and no class dates. It allows a class name and teacher name of 2–80 characters, virtual amounts from $0.01 to $1,000,000, a 1–100% position limit, and 1–100 approved ticker symbols. **These are current implementation choices, not production rules; the owner has now approved a $1,000 starting-cash prefill for the real class setup.**
 
-The recorded working implementation order was: (1) teacher setup/class creation prototype; (2) student joining/onboarding; (3) first guided virtual purchase into Learn using owner-provided content; (4) real accounts/shared class storage and then live market/trading infrastructure. This is a planning sequence, not a committed release date or permission to treat previews as production.
+The recorded working implementation order was: (1) teacher setup/class creation prototype; (2) student joining/onboarding; (3) first guided virtual purchase into Learn using owner-provided content; (4) real accounts/shared class storage and then live market/trading infrastructure. This is only a development sequence. The owner has since clarified that the product target is one complete app, not multiple reduced releases.
 
-## 6. Open decisions and questions
+## 6. Remaining unanswered decisions
 
-The following gaps should be resolved before implementing the affected feature. They are intentionally unanswered here.
+This list was rechecked against all 125 turns of the earlier shared chat, including the surrounding teacher-control discussion (turns 29–36), the later conversation, and the owner's voice answers. It excludes questions that the owner already answered. A proposed detail is not treated as approved merely because it appeared in an assistant response.
 
-### Scope and navigation
+### Accounts, schools, and class membership
 
-1. What is the first complete student test or release slice: teacher signup → student joins → guided purchase → Learn, or a smaller subset? Which of the four student areas must be real at that point?
-2. After onboarding, where does a returning student land? Does Skip go to the same place? Is the interactive walkthrough part of onboarding or a separate first-use guide?
-3. Which class games beyond situations actually belong in the first version? The conversation did **not** settle a count of three modes.
+1. How do schools sign up, and how is a teacher's employment under an enrolled school verified? When does open teacher signup end? Can a teacher belong to more than one school?
+2. In the eventual school-and-grade signup flow, how is the age-14 minimum checked without collecting date of birth? How are school and grade verified?
+3. May a student leave or transfer a class, and what happens to that class's portfolio and Learn progress afterward? What can a student see before joining a class, and how are invalid or replaced invitations handled?
+4. Which profile fields may students and teachers change? What is the minimum age for a teacher account? How do Google-only users recover access?
 
-### Learning and games
+### Teacher controls and money rules
 
-4. What first topics, source documents, and historical/simulated situations will the owner provide? What is the first situation's learning objective and acceptable reasoning?
-5. What are the exact situation timer, quantity bounds, timeout behavior, retries, scoring/progression rules, and class reveal rules?
-6. What is the relationship between situation money and a student's ongoing portfolio? If they are separate, what results carry back into the class experience?
-7. What team size, late-join behavior, and disconnected-leader rule should class games use? What can the teacher pause, change, or reveal during a game?
+5. What securities are supported: U.S. stocks, exchange-traded funds, or others? Who maintains the eligible universe from which a teacher can allow all or select an approved list?
+6. What do optional class start/end dates do to joining, trading, viewing, and results? What are the initial states and valid ranges for optional trading, position-limit, weekly-deposit, and date settings before a teacher changes them?
+7. If a teacher removes a company that a student owns from the approved list, may the student sell it, only hold it, or do something else? Existing shares must not be sold automatically. What does pausing trading block?
+8. Which class rules can be overridden for one student, and how are conflicts resolved between class rules and individual exceptions?
+9. Which timezone controls the weekly deposit day? How are missed, changed, backdated, or reversed deposits handled? May a teacher remove virtual cash, and what history or notice must the student see?
+10. Which teacher views and reports are required for student participation, decisions, progress, trading, and games? Are class archives, exports, and deletion required?
 
-### Market, trading, and research data
+### First use, portfolio, and trading
 
-8. Which real-market data and news providers, markets, quote-delay level, and history rights can MOMENT use? What happens when markets are closed or data is stale?
-9. How do virtual orders execute: shares or dollars, fractional shares, execution time/price, fees, dividends/splits, rejected orders, and market-closed requests?
-10. Whose activity defines “most researched” and “most purchased,” over what period, and how is a short “why” statement verified without inventing a causal claim?
-11. What are the final starter companies and supported/teacher-approved company universe? No “safe” or “stable” company label has been justified.
+11. Is the interactive walkthrough combined with the short scrollable introduction or separate? Where does Skip lead, and how is an interrupted guide resumed? Replay from Help is already in the plan.
+12. Which 3–5 companies are the final starter choices? Can a student search beyond them during onboarding, and how much virtual cash may the guided first purchase use? NVIDIA and Google were examples, not approved final choices or promises of safety.
+13. Which chart ranges and point details should Portfolio support? Should classmates' comparisons appear there? The portfolio graph and separate cash/holdings are already approved.
+14. Which markets, quote/news providers, history rights, data delay, and refresh rate are acceptable? How should closed markets, stale quotes, and missing data appear?
+15. Should virtual orders be entered as shares, dollars, percentages, or a combination? Are fractional shares allowed? When and at what price do orders execute, including outside market hours? How are rejected or interrupted orders handled?
+16. Should fees, dividends, splits, or other corporate actions affect the simulation? Which return calculation and chart treatment keep teacher cash additions and weekly deposits separate from investment gains?
 
-### Teacher and account rules
+### Learn, situations, and feedback
 
-12. What are the production class defaults, how do individual overrides work, and what happens to existing positions when a company becomes disallowed or trading is paused?
-13. How are virtual cash adjustments and weekly deposits recorded, reversed, scheduled across timezones, and separated from investment performance? What does a student see?
-14. What are the teacher/student authentication and privacy requirements, including multi-class membership, co-teachers, class-code lifecycle, and account recovery?
-15. What exactly must the teacher workspace report about participation, decisions, progress, and class-game results?
+17. What are the first owner-provided learning topic, sources, and situation? What is the learning objective and evidence that students may use at the decision pause?
+18. Are lessons self-paced or teacher-assigned? What are their length, prerequisite, retry, level, and scoring rules? Progress must reflect learning rather than profit alone.
+19. Does a situation use the student's class portfolio or a separate scenario balance? If separate, which results affect class progress or standings?
+20. What are the decision timer, quantity bounds, timeout behavior, and pause/replay controls for situations? Buy/sell/hold and a bounded amount are already decided.
+21. Is a quick selected reason used at some decisions? When do students see the outcome, classmates' choices, and feedback? Which parts may AI draft, and who checks accuracy? Basic feedback must work without AI.
 
-### Feedback, media, and operations
+### Market, Research, games, and operations
 
-16. Which feedback is deterministic, and what may AI draft? Who checks factual accuracy, and what happens when AI or source data is unavailable?
-17. What help, privacy, data-retention, deletion, export, and support policies should the production app provide?
+22. Which news sources, markets, archive depth, update schedule, and editorial checks support Market? The organized lead-story, grouped-headline, today/week/month, and date-lookup structure was already accepted.
+23. Whose activity defines Research's “most researched” and “most purchased” rankings, over what period? How is a short explanation of interest sourced without claiming an unproven cause?
+24. What exact information and tools belong in a company deep dive: search, financial context, product/supplier relationships, saved evidence, or others? A deeper informational view without buy prompts is already decided.
+25. Which class game modes exist besides solo/class-hosted situations? The earlier idea of roughly three modes was not a settled count.
+26. What are team size, late-join rules, disconnected-leader replacement, teammate discussion tools, teacher launch/pause/reveal controls, scoring, ties, and comparison rules? Team selection, random leader, stable leader for a game, shared teammate role, and leader-only submission are already decided.
+27. What are the production help/support, student privacy, data-retention, deletion, export, accessibility, mobile, and connection-loss requirements?
 
-The most immediate blockers for the next **student** implementation are the first release slice, first owner-provided learning source/topic, market/order rules for the guided virtual purchase, and the class-join/account model.
+The teacher's choice between **all supported companies** and **an approved list** is settled. The remaining question about an already-owned company concerns behavior **after the teacher changes that list**, which the earlier conversation did not specify.
