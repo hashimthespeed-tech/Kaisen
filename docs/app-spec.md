@@ -74,7 +74,7 @@ These are product areas and supporting screens, **not final URL or component bou
 
 **Decided:** A teacher sets starting virtual cash, chooses either all supported stocks or a teacher-approved stock list during class creation, may set a maximum single-company share of a portfolio, may pause/resume trading, and may set class start/end dates. Settings should be editable later. Teachers also need individual-student exceptions and virtual-cash adjustments in the complete app. A class-wide weekly virtual allowance is optional; the teacher chooses an amount and day, can pause/change it, and deposits happen even when students are offline.
 
-The investment universe is U.S. and international stocks only, with no cryptocurrency or non-stock products. The owner wants broad searchable stock coverage rather than a hand-picked app-wide list, subject to feasible market-data coverage. A teacher's optional approved list is a separate class control. Currency conversion and exchange coverage remain open.
+The investment universe is U.S. and international stocks only, with no cryptocurrency or non-stock products. The owner wants broad searchable stock coverage rather than a hand-picked app-wide list, subject to feasible market-data coverage. A teacher's optional approved list is a separate class control. All class cash, stock values, and portfolio totals display in U.S. dollars, including converted international holdings. Exchange/data coverage and the exchange-rate method remain open.
 
 The starting-cash field is prefilled with **$1,000 virtual**; the teacher chooses the actual value during class creation.
 
@@ -207,7 +207,7 @@ This list was rechecked against all 125 turns of the earlier shared chat, includ
 
 ### Teacher controls and money rules
 
-3. For international stocks, which exchanges and market-data coverage are feasible? Are class cash and portfolio totals denominated in U.S. dollars, with international prices converted, or does each stock retain a local-currency presentation? Crypto and non-stock products are excluded; teacher-approved class lists remain available.
+3. For international stocks, which exchanges and market-data coverage are feasible, and how are exchange rates sourced and timestamped? Cash, stock values, and portfolio totals are already approved as U.S.-dollar displays. Crypto and non-stock products are excluded; teacher-approved class lists remain available.
 4. What do optional class start/end dates do to joining, trading, viewing, and results? What are the initial states and valid ranges for optional trading, position-limit, weekly-deposit, and date settings before a teacher changes them?
 5. If a teacher removes a company that a student owns from the approved list, may the student sell it, only hold it, or do something else? Existing shares must not be sold automatically. What does pausing trading block?
 6. Which class rules can be overridden for one student, and how are conflicts resolved between class rules and individual exceptions?
