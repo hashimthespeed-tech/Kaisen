@@ -50,7 +50,7 @@ Only the **browser-local teacher details, class setup, review, and workspace pre
 
 Join a teacher-created class by code or invitation link → create/access the student account → optional short, scrollable introduction to investing and the app → choose from **3–5 starter companies** → guided first virtual purchase → **Learn**. The entire introduction and guided-purchase sequence can be skipped. NVIDIA and Google/Alphabet were examples of recognizable starter companies, **not** approved final choices or a claim that those stocks are stable or safe.
 
-A short interactive walkthrough with text pointers that let the student try controls was also requested. It should be skippable and replayable from Help. Whether that walkthrough is combined with the scrollable introduction or appears separately is open.
+A short interactive walkthrough with text pointers that let the student try controls is part of the first-time flow, combined with the introduction. Students can replay the walkthrough later from Settings.
 
 **Decided:** Portfolio is the normal home for a returning student and the destination after skipping onboarding. The first guided purchase explicitly ends in Learn.
 
@@ -106,7 +106,7 @@ The teacher's idea of limiting students to “well-reputed, long-term” stocks 
 
 ### 3.5 Optional first-time introduction and guided purchase
 
-**Decided:** The introduction is short and scrollable, covering investing and what the app does using owner-provided teaching sources. The student chooses one of 3–5 starter companies, is guided through a first virtual purchase, and then enters Learn. They can skip the entire sequence. The walkthrough should guide real clicks rather than merely describe controls.
+**Decided:** The introduction is short and scrollable, covering investing and what the app does using owner-provided teaching sources. It flows into an interactive walkthrough where students try controls. The student chooses one of 3–5 starter companies, is guided through a first virtual purchase, and then enters Learn. They can skip the entire sequence. Students can replay the walkthrough from Settings.
 
 **Open:** Final starter companies and why they qualify, available search during the choice, exact text and teaching sources, how much of the starting cash the student can use, and how the guide is replayed or resumed. Skip goes to Portfolio.
 
@@ -220,7 +220,7 @@ This list was rechecked against all 125 turns of the earlier shared chat, includ
 
 ### First use, portfolio, and trading
 
-9. Is the interactive walkthrough combined with the short scrollable introduction or separate? How is an interrupted guide resumed? Skip goes to Portfolio; replay from Help is already in the plan.
+9. The scrollable introduction and click-through walkthrough are one first-time flow; students can replay the walkthrough from Settings. Skip goes to Portfolio. How is an interrupted guide resumed?
 10. Which 3–5 companies are the final starter choices? Can a student search beyond them during onboarding, and how much virtual cash may the guided first purchase use? NVIDIA and Google were examples, not approved final choices or promises of safety.
 11. Which chart ranges and point details should Portfolio support? Should classmates' comparisons appear there? The portfolio graph and separate cash/holdings are already approved.
 12. Which markets, quote/news providers, history rights, data delay, and refresh rate are acceptable? How should closed markets, stale quotes, and missing data appear?
