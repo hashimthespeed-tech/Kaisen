@@ -106,9 +106,9 @@ The teacher's idea of limiting students to “well-reputed, long-term” stocks 
 
 ### 3.5 Optional first-time introduction and guided purchase
 
-**Decided:** The introduction is short and scrollable, covering investing and what the app does using owner-provided teaching sources. It flows into an interactive walkthrough where students try controls. The student chooses one of 3–5 starter companies, is guided through a first virtual purchase, and then enters Learn. They can skip the entire sequence. Students can replay the walkthrough from Settings.
+**Decided:** The introduction is short and scrollable, covering investing and what the app does using owner-provided teaching sources. It flows into an interactive walkthrough where students try controls. The student chooses one of the approved starter stocks—**Microsoft, Visa, Google, or Apple**—is guided through a first virtual purchase, and then enters Learn. They can skip the entire sequence. Students can replay the walkthrough from Settings.
 
-**Open:** Final starter companies and why they qualify, available search during the choice, exact text and teaching sources, how much of the starting cash the student can use, and how the guide is replayed or resumed. Skip goes to Portfolio.
+**Open:** Whether students may search beyond the four starter stocks during onboarding, exact text and teaching sources, how much starting cash the guided purchase can use, and how an interrupted guide resumes. Skip goes to Portfolio; replay is available from Settings.
 
 ### 3.6 Portfolio
 
@@ -221,7 +221,7 @@ This list was rechecked against all 125 turns of the earlier shared chat, includ
 ### First use, portfolio, and trading
 
 9. The scrollable introduction and click-through walkthrough are one first-time flow; students can replay the walkthrough from Settings. Skip goes to Portfolio. How is an interrupted guide resumed?
-10. Which 3–5 companies are the final starter choices? Can a student search beyond them during onboarding, and how much virtual cash may the guided first purchase use? NVIDIA and Google were examples, not approved final choices or promises of safety.
+10. Microsoft, Visa, Google, and Apple are the four starter choices. Can students search beyond them during onboarding, and how much virtual cash may the guided first purchase use?
 11. Which chart ranges and point details should Portfolio support? Should classmates' comparisons appear there? The portfolio graph and separate cash/holdings are already approved.
 12. Which markets, quote/news providers, history rights, data delay, and refresh rate are acceptable? How should closed markets, stale quotes, and missing data appear?
 13. Should virtual orders be entered as shares, dollars, percentages, or a combination? Are fractional shares allowed? When and at what price do orders execute, including outside market hours? How are rejected or interrupted orders handled?
