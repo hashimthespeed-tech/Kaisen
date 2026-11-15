@@ -80,11 +80,13 @@ The starting-cash field is prefilled with **$1,000 virtual**; the teacher choose
 
 Changing a rule must **not silently liquidate** existing holdings. Teacher-added money and scheduled deposits must be accounted for separately from investment return. Students should be able to see applicable restrictions and understand why an action was blocked. Teacher changes and adjustments need a history.
 
+If a teacher sets a class end date, trading stops on that date, while students retain read-only access to their portfolio and results.
+
 The teacher's idea of limiting students to “well-reputed, long-term” stocks became a **defined approved-company list**. No reputation or safety preset has been approved.
 
 **Prototype only:** Three steps exist: teacher details → class settings → review. Basic class fields are name, starting virtual cash, and investment access. An optional disclosure contains trading enabled/paused, single-stock percentage limit, weekly virtual amount and day, and optional class dates. The review shows the values before saving; a teacher can edit afterward. These values are stored in this browser only. Trading limits, scheduled deposits, and start/end enforcement do **not** operate yet.
 
-**Open:** Initial states and valid ranges for optional settings, supported security universe, what a changed approved list does to existing holdings, precedence of individual overrides, how teachers reverse an adjustment, and class date behavior. Scheduled deposits also need a timezone, idempotent accounting, and an audit history before activation.
+**Open:** Initial states and valid ranges for optional settings, supported security universe, what a changed approved list does to existing holdings, precedence of individual overrides, how teachers reverse an adjustment, start-date behavior, and whether valuation freezes or continues after a class ends. Scheduled deposits also need a timezone, idempotent accounting, and an audit history before activation.
 
 ### 3.3 Teacher workspace and class detail
 
@@ -208,7 +210,7 @@ This list was rechecked against all 125 turns of the earlier shared chat, includ
 ### Teacher controls and money rules
 
 3. For international stocks, which exchanges and market-data coverage are feasible, and how are exchange rates sourced and timestamped? Cash, stock values, and portfolio totals are already approved as U.S.-dollar displays. Crypto and non-stock products are excluded; teacher-approved class lists remain available.
-4. What do optional class start/end dates do to joining, trading, viewing, and results? What are the initial states and valid ranges for optional trading, position-limit, weekly-deposit, and date settings before a teacher changes them?
+4. Before a class start date, may students join and view the app, or only after the date? After an end date, do portfolio values freeze or continue to follow live prices? Trading stops at the end date and read-only portfolios/results remain visible. What are the initial states and valid ranges for optional settings?
 5. If a teacher removes a company that a student owns from the approved list, may the student sell it, only hold it, or do something else? Existing shares must not be sold automatically. What does pausing trading block?
 6. Which class rules can be overridden for one student, and how are conflicts resolved between class rules and individual exceptions?
 7. Which timezone controls the weekly deposit day? How are missed, changed, backdated, or reversed deposits handled? May a teacher remove virtual cash, and what history or notice must the student see?
