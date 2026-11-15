@@ -80,13 +80,13 @@ The starting-cash field is prefilled with **$1,000 virtual**; the teacher choose
 
 Changing a rule must **not silently liquidate** existing holdings. Teacher-added money and scheduled deposits must be accounted for separately from investment return. Students should be able to see applicable restrictions and understand why an action was blocked. Teacher changes and adjustments need a history.
 
-If a teacher sets a class start date, students may join and explore before it, but cannot trade until that date. If a teacher sets an end date, trading stops on that date. Portfolio values keep following live market prices while students have read-only access to their portfolio and results. The teacher chooses a finite period for how long students can view the ended class; the field is prefilled with one week, also the minimum. There is no keep-visible-forever option. When the viewing period expires, the class is hidden from the student but its data remains saved.
+If a teacher sets a class start date, students may join and explore before it, but cannot trade until that date. If a teacher sets an end date, trading stops on that date. Portfolio values keep following live market prices while students have read-only access to their portfolio and results. The teacher chooses a finite period of one week to two months for how long students can view the ended class; the field is prefilled with one week. There is no keep-visible-forever option. When the viewing period expires, the class is hidden from the student but its data remains saved.
 
 The teacher's idea of limiting students to “well-reputed, long-term” stocks became a **defined approved-company list**. No reputation or safety preset has been approved.
 
 **Prototype only:** Three steps exist: teacher details → class settings → review. Basic class fields are name, starting virtual cash, and investment access. An optional disclosure contains trading enabled/paused, single-stock percentage limit, weekly virtual amount and day, and optional class dates. The review shows the values before saving; a teacher can edit afterward. These values are stored in this browser only. Trading limits, scheduled deposits, and start/end enforcement do **not** operate yet.
 
-**Open:** Initial states and valid ranges for optional settings, supported security universe, what a changed approved list does to existing holdings, precedence of individual overrides, how teachers reverse an adjustment, the maximum finite post-class viewing period, and whether a teacher can restore student viewing after expiry. Scheduled deposits also need a timezone, idempotent accounting, and an audit history before activation.
+**Open:** Initial states and valid ranges for optional settings, supported security universe, what a changed approved list does to existing holdings, precedence of individual overrides, how teachers reverse an adjustment, and whether a teacher can restore student viewing after expiry. Scheduled deposits also need a timezone, idempotent accounting, and an audit history before activation.
 
 ### 3.3 Teacher workspace and class detail
 
@@ -210,7 +210,7 @@ This list was rechecked against all 125 turns of the earlier shared chat, includ
 ### Teacher controls and money rules
 
 3. For international stocks, which exchanges and market-data coverage are feasible, and how are exchange rates sourced and timestamped? Cash, stock values, and portfolio totals are already approved as U.S.-dollar displays. Crypto and non-stock products are excluded; teacher-approved class lists remain available.
-4. What are the initial states and valid ranges for optional class settings? After a class ends, the teacher chooses a finite student viewing period of at least one week (also the prefill) while values keep updating. What is the maximum period, and may a teacher restore viewing after the class is hidden?
+4. What are the initial states and valid ranges for optional class settings? After a class ends, the teacher chooses a one-week to two-month student viewing period (one week prefilled) while values keep updating. May a teacher restore viewing after the class is hidden?
 5. If a teacher removes a company that a student owns from the approved list, may the student sell it, only hold it, or do something else? Existing shares must not be sold automatically. What does pausing trading block?
 6. Which class rules can be overridden for one student, and how are conflicts resolved between class rules and individual exceptions?
 7. Which timezone controls the weekly deposit day? How are missed, changed, backdated, or reversed deposits handled? May a teacher remove virtual cash, and what history or notice must the student see?
