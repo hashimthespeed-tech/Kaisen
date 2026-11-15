@@ -114,9 +114,11 @@ The teacher's idea of limiting students to “well-reputed, long-term” stocks 
 
 **Decided:** The portfolio follows real market prices over time and includes a prominent value graph. Keep available cash and invested holdings separate. Show the effects of decisions, not just a final balance. Teacher cash additions and weekly deposits must not count as investment gain.
 
-**Working direction:** A main view shows total portfolio value, period change, available cash, holdings, and recent activity. A chart can provide Today/Week/Month/All ranges and point inspection; these exact controls were proposed, not expressly locked. Individual holdings can lead to company information and selling. Portfolio is the approved returning-student home.
+**Decided:** The Portfolio graph includes Today, Week, Month, and All ranges. Portfolio does not compare a student's results with classmates. Portfolio is the approved returning-student home.
 
-**Open:** Quote refresh cadence/provider, market-close and delayed-price behavior, valuation at historical dates, return calculation, dividends/splits, unavailable quotes, cash-flow-adjusted performance, and whether class comparison appears here. No live portfolio exists in the prototype.
+**Working direction:** A main view shows total portfolio value, period change, available cash, holdings, and recent activity. Point inspection on the chart was proposed. Individual holdings can lead to company information and selling.
+
+**Open:** Quote refresh cadence/provider, market-close and delayed-price behavior, chart point details, valuation at historical dates, return calculation, dividends/splits, unavailable quotes, and cash-flow-adjusted performance. No live portfolio exists in the prototype.
 
 ### 3.7 Company detail, buy/sell, and confirmation
 
@@ -222,7 +224,7 @@ This list was rechecked against all 125 turns of the earlier shared chat, includ
 
 9. The scrollable introduction and click-through walkthrough are one first-time flow; replay and interrupted flows restart from the beginning. Skip goes to Portfolio.
 10. Microsoft, Visa, Google, and Apple are the four starter choices, with no additional search during onboarding. The guided first purchase uses 10% of starting cash.
-11. Which chart ranges and point details should Portfolio support? Should classmates' comparisons appear there? The portfolio graph and separate cash/holdings are already approved.
+11. Portfolio graph ranges are Today, Week, Month, and All. Portfolio does not compare results with classmates. What details should a student see when selecting a point on the graph?
 12. Which markets, quote/news providers, history rights, data delay, and refresh rate are acceptable? How should closed markets, stale quotes, and missing data appear?
 13. Should virtual orders be entered as shares, dollars, percentages, or a combination? Are fractional shares allowed? When and at what price do orders execute, including outside market hours? How are rejected or interrupted orders handled?
 14. Should fees, dividends, splits, or other corporate actions affect the simulation? Which return calculation and chart treatment keep teacher cash additions and weekly deposits separate from investment gains?
