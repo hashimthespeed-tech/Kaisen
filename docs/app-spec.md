@@ -118,7 +118,9 @@ The teacher's idea of limiting students to “well-reputed, long-term” stocks 
 
 **Working direction:** A main view shows total portfolio value, period change, available cash, holdings, and recent activity. Point inspection on the chart was proposed. Individual holdings can lead to company information and selling.
 
-**Open:** Quote refresh cadence and provider for live prices, how market-close prices are labeled, valuation at historical dates, return calculation, dividends/splits, unavailable quotes, and cash-flow-adjusted performance. No live portfolio exists in the prototype.
+**Decided:** Stock prices are live. When the regular exchange session is closed, show the latest available price and identify the market session and quote time, following common Robinhood/Fidelity behavior. Show extended-hours movement when supported by the live data source.
+
+**Open:** Quote refresh cadence and provider for live and extended-hours prices, valuation at historical dates, return calculation, dividends/splits, unavailable quotes, and cash-flow-adjusted performance. No live portfolio exists in the prototype.
 
 ### 3.7 Company detail, buy/sell, and confirmation
 
@@ -225,7 +227,7 @@ This list was rechecked against all 125 turns of the earlier shared chat, includ
 9. The scrollable introduction and click-through walkthrough are one first-time flow; replay and interrupted flows restart from the beginning. Skip goes to Portfolio.
 10. Microsoft, Visa, Google, and Apple are the four starter choices, with no additional search during onboarding. The guided first purchase uses 10% of starting cash.
 11. Portfolio graph ranges are Today, Week, Month, and All. Hover shows portfolio value; clicking shows cash and holdings at that time. Portfolio does not compare results with classmates.
-12. Which markets and quote/news providers can supply live prices, and at what refresh rate? How should closed markets, stale quotes, and missing data appear?
+12. Which markets and quote/news providers can supply live prices, and at what refresh rate? Closed-market display follows the latest available price with session and quote-time labels, plus extended-hours movement when supported. How should stale or missing data appear?
 13. Should virtual orders be entered as shares, dollars, percentages, or a combination? Are fractional shares allowed? When and at what price do orders execute, including outside market hours? How are rejected or interrupted orders handled?
 14. Should fees, dividends, splits, or other corporate actions affect the simulation? Which return calculation and chart treatment keep teacher cash additions and weekly deposits separate from investment gains?
 
