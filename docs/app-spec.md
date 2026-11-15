@@ -126,9 +126,9 @@ The teacher's idea of limiting students to “well-reputed, long-term” stocks 
 
 **Decided/working direction:** Students need a company view and a clear virtual purchase/sale review. Teachers' approved lists and position limits must be respected once active. Buying and selling belong to the investing flow, **not as prompts in Research's trending cards**. A blocked action should name the relevant class rule.
 
-**Decided:** Students enter trades as dollar amounts.
+**Decided:** Students enter trades as dollar amounts, and fractional shares are supported.
 
-**Open:** Where company detail is entered from each tab, whether dollar orders use fractional shares, commissions/fees, quote-lock or execution timing, market-closed orders, cancellation, and how to handle a data outage.
+**Open:** Where company detail is entered from each tab, commissions/fees, quote-lock or execution timing, market-closed orders, cancellation, and how to handle a data outage.
 
 ### 3.8 Learn: lesson entry and progression
 
@@ -230,7 +230,7 @@ This list was rechecked against all 125 turns of the earlier shared chat, includ
 10. Microsoft, Visa, Google, and Apple are the four starter choices, with no additional search during onboarding. The guided first purchase uses 10% of starting cash.
 11. Portfolio graph ranges are Today, Week, Month, and All. Hover shows portfolio value; clicking shows cash and holdings at that time. Portfolio does not compare results with classmates.
 12. Which markets and quote/news providers can supply live prices, and at what refresh rate? Closed-market display follows the latest available price with session and quote-time labels, plus extended-hours movement when supported. How should stale or missing data appear?
-13. Trades are entered as dollar amounts. Are fractional shares allowed? When and at what price do orders execute, including outside market hours? How are rejected or interrupted orders handled?
+13. Trades are entered as dollar amounts with fractional shares. When and at what price do orders execute, including outside market hours? How are rejected or interrupted orders handled?
 14. Should fees, dividends, splits, or other corporate actions affect the simulation? Which return calculation and chart treatment keep teacher cash additions and weekly deposits separate from investment gains?
 
 ### Learn, situations, and feedback
